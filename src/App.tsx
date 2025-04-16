@@ -115,44 +115,42 @@ function ExperienceCard({
 }
 
 function SkillsPage() {
+  const pillHeight = 28;
+  
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-3xl font-bold mb-8 text-center">Skills Overview</h1>
+    <div className="min-h-screen">
+      <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h1 className="text-4xl font-bold mb-4">Skills Overview</h1>
+        </div>
+      </header>
 
-        <div className="mb-10">
-          <h2
-            style={{
-              display: "grid",
-              gridTemplateColumns: "auto 1fr",
-              alignItems: "center",
-              marginBottom: "1.5rem",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
-            }}
-          >
-            <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
-              <Star size={24} />
-            </div>
+      <main className="container mx-auto px-4 max-w-4xl py-12">
+        <section className="mb-12">
+          <h2 style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "1.5rem",
+            fontWeight: "bold",
+            fontSize: "1.5rem",
+          }}>
+            <Star className="w-6 h-6 mr-2 flex-shrink-0" />
             <span>Expert</span>
           </h2>
-          <div className="bg-white rounded-lg p-6 shadow-md">
+          <div className="bg-white rounded-lg p-6 shadow-md mb-6">
             <div className="flex flex-wrap gap-2">
               {["Angular", "HTML, CSS", "Javascript", "Git", "Github", "CI/CD"].map((skill, index) => (
-                <span
+                <span 
                   key={index}
                   style={{
                     backgroundColor: "rgb(239, 246, 255)",
                     color: "rgb(37, 99, 235)",
                     borderRadius: "9999px",
                     fontSize: "0.875rem",
-                    padding: "5px 0.75rem",
+                    padding: "0 0.75rem",
+                    display: "inline-block",
                     whiteSpace: "nowrap",
-                    overflow: "visible",
-                    display: "grid",
-                    justifyContent: "center",
-                    alignContent: "center",
-                    alignItems: "center",
+                    verticalAlign: "middle"
                   }}
                 >
                   {skill}
@@ -160,25 +158,20 @@ function SkillsPage() {
               ))}
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="mb-10">
-          <h2
-            style={{
-              display: "grid",
-              gridTemplateColumns: "auto 1fr",
-              alignItems: "center",
-              marginBottom: "1.5rem",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
-            }}
-          >
-            <div style={{  flexShrink: 0, width: "28px", marginRight: "8px" }}>
-              <Code size={24} />
-            </div>
+        <section className="mb-12">
+          <h2 style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "1.5rem",
+            fontWeight: "bold",
+            fontSize: "1.5rem",
+          }}>
+            <Code className="w-6 h-6 mr-2 flex-shrink-0" />
             <span>Intermediate</span>
           </h2>
-          <div className="bg-white rounded-lg p-6 shadow-md">
+          <div className="bg-white rounded-lg p-6 shadow-md mb-6">
             <div className="flex flex-wrap gap-2">
               {[
                 "Java ( Hibernate, since MediaSpecs )",
@@ -202,64 +195,59 @@ function SkillsPage() {
                 "Nx Monorepo",
                 "UI / UX",
                 "Vim",
-              ].map((skill, index) => (
-                <span
-                  key={index}
-                  style={{
-                    backgroundColor: "rgb(239, 246, 255)",
-                    color: "rgb(37, 99, 235)",
-                    borderRadius: "9999px",
-                    fontSize: "0.875rem",
-                    padding: "5px 0.75rem",
-                    whiteSpace: "nowrap",
-                    overflow: "visible",
-                    display: "grid",
-                    justifyContent: "center",
-                    alignContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {skill}
-                </span>
-              ))}
+              ].map((skill, index) => {
+                const isLongSkill = skill.length > 25;
+                return (
+                  <span 
+                    key={index}
+                    style={{
+                      backgroundColor: "rgb(239, 246, 255)",
+                      color: "rgb(37, 99, 235)",
+                      borderRadius: "9999px",
+                      fontSize: "0.875rem",
+                      padding: "0 0.75rem",
+                      display: "inline-block",
+                      whiteSpace: isLongSkill ? "normal" : "nowrap",
+                      maxWidth: isLongSkill ? "180px" : "none",
+                      overflow: isLongSkill ? "hidden" : "visible",
+                      textOverflow: isLongSkill ? "ellipsis" : "clip",
+                      verticalAlign: "middle"
+                    }}
+                    title={skill}
+                  >
+                    {skill}
+                  </span>
+                );
+              })}
             </div>
           </div>
-        </div>
+        </section>
 
-        <div>
-          <h2
-            style={{
-              height: "25px",
-              lineHeight: "25px",
-              display: "grid",
-              gridTemplateColumns: "auto 1fr",
-              marginBottom: "1.5rem",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
-            }}
-          >
-            <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
-              <Award size={24} />
-            </div>
+        <section>
+          <h2 style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: "1.5rem",
+            fontWeight: "bold",
+            fontSize: "1.5rem",
+          }}>
+            <Award className="w-6 h-6 mr-2 flex-shrink-0" />
             <span>Novice</span>
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md">
             <div className="flex flex-wrap gap-2">
               {["Helm", "Terraform", "OpenAI tools / API"].map((skill, index) => (
-                <span
+                <span 
                   key={index}
                   style={{
                     backgroundColor: "rgb(239, 246, 255)",
                     color: "rgb(37, 99, 235)",
                     borderRadius: "9999px",
                     fontSize: "0.875rem",
-                    padding: "5px 0.75rem",
+                    padding: "0 0.75rem",
+                    display: "inline-block",
                     whiteSpace: "nowrap",
-                    overflow: "visible",
-                    display: "grid",
-                    justifyContent: "center",
-                    alignContent: "center",
-                    alignItems: "center",
+                    verticalAlign: "middle"
                   }}
                 >
                   {skill}
@@ -267,8 +255,8 @@ function SkillsPage() {
               ))}
             </div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
@@ -292,21 +280,22 @@ function App() {
         compress: false, // Better quality at larger file size
       });
 
-      // First page - Resume
-      const resumeCanvas = await html2canvas(resumeRef.current, {
+      // Common html2canvas options for consistent rendering
+      const canvasOptions = {
         scale: 3, // Increase scale for better quality
         logging: false,
         useCORS: true,
         allowTaint: true,
         backgroundColor: "#ffffff",
-        foreignObjectRendering: true, // Better handling of CSS
-      });
+        foreignObjectRendering: true,
+      };
 
-      console.log(resumeCanvas,resumeCanvas.height,resumeCanvas.width);
+      // First page - Resume
+      const resumeCanvas = await html2canvas(resumeRef.current, canvasOptions);
+
       const imgWidth = 210; // A4 width in mm
       const resumeImgHeight = (resumeCanvas.height * imgWidth) / resumeCanvas.width;
       const resumeImgData = resumeCanvas.toDataURL("image/jpeg", 1.0);
-      console.log(resumeImgData);
       
       pdf.addImage(
         resumeImgData,
@@ -321,21 +310,44 @@ function App() {
 
       // Second page - Skills
       pdf.addPage();
-
+      
+      skillsRef.current.style.position = 'absolute';
+      skillsRef.current.style.top = '0px';
+      skillsRef.current.style.left = '0px';
+      skillsRef.current.style.width = '100%';
+      skillsRef.current.style.height = '100%';
       const skillsCanvas = await html2canvas(skillsRef.current, {
         scale: 3,
         logging: false,
         useCORS: true,
         allowTaint: true,
-        backgroundColor: "#eeee",
-        foreignObjectRendering: false,
+        // backgroundColor: "#ffffff",
+        foreignObjectRendering: true,
+
       });
-      console.log(skillsCanvas,skillsCanvas.height,skillsCanvas.width);
 
       const skillsImgHeight = (skillsCanvas.height * imgWidth) / skillsCanvas.width;
       const skillsImgData = skillsCanvas.toDataURL("image/jpeg", 1.0);
-      console.log(skillsImgData);
+      // Convert the base64 image data to an Image object
+      // const skillsImage = new Image();
+      // skillsImage.src = skillsImgData;
       
+      // // Log the image object to console
+      // console.log('Skills Image:', skillsImage);
+      // // Create a temporary URL for the image to view it
+      // const skillsImageUrl = URL.createObjectURL(
+      //   await fetch(skillsImgData).then(res => res.blob())
+      // );
+      
+      // // Open the image in a new tab to verify it's correctly generated
+      // window.open(skillsImageUrl, '_blank');
+      
+      // // Clean up the temporary URL after a delay to ensure it's opened
+      // setTimeout(() => {
+      //   URL.revokeObjectURL(skillsImageUrl);
+      // }, 5000);
+      
+      // pdf.insertPage(1)
       pdf.addImage(
         skillsImgData,
         "JPEG",
@@ -346,6 +358,11 @@ function App() {
         undefined,
         "FAST"
       );
+
+      //reset the skills ref position
+      skillsRef.current.style.position = 'relative';
+      skillsRef.current.style.top = 'unset';
+      skillsRef.current.style.left = 'unset';
 
       // Save the PDF with higher quality
       pdf.save("jonas-vercammen-resume.pdf");
@@ -432,8 +449,6 @@ function App() {
           <section className="mb-12">
             <h2
               style={{
-                height: "25px",
-                lineHeight: "25px",
                 display: "grid",
                 gridTemplateColumns: "auto 1fr",
                 marginBottom: "1.5rem",
@@ -515,8 +530,6 @@ function App() {
           <section>
             <h2
               style={{
-                height: "25px",
-                lineHeight: "25px",
                 display: "grid",
                 gridTemplateColumns: "auto 1fr",
                 marginBottom: "1.5rem",
@@ -549,8 +562,8 @@ function App() {
         </main>
       </div>
 
-      {/* Skills Page - Hidden initially but used for PDF export */}
-      <div ref={skillsRef} className="">
+      {/* Skills Page - Visible but with page break for PDF export */}
+      <div ref={skillsRef} style={{ pageBreakBefore: 'always' }}>
         <SkillsPage />
       </div>
     </div>
