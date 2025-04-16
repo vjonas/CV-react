@@ -7,6 +7,9 @@ import {
   Mail,
   Phone,
   Download,
+  Award,
+  Code,
+  Star,
 } from "lucide-react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -111,18 +114,186 @@ function ExperienceCard({
   );
 }
 
+function SkillsPage() {
+  return (
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <h1 className="text-3xl font-bold mb-8 text-center">Skills Overview</h1>
+
+        <div className="mb-10">
+          <h2
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto 1fr",
+              alignItems: "center",
+              marginBottom: "1.5rem",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
+            <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
+              <Star size={24} />
+            </div>
+            <span>Expert</span>
+          </h2>
+          <div className="bg-white rounded-lg p-6 shadow-md">
+            <div className="flex flex-wrap gap-2">
+              {["Angular", "HTML, CSS", "Javascript", "Git", "Github", "CI/CD"].map((skill, index) => (
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: "rgb(239, 246, 255)",
+                    color: "rgb(37, 99, 235)",
+                    borderRadius: "9999px",
+                    fontSize: "0.875rem",
+                    padding: "5px 0.75rem",
+                    whiteSpace: "nowrap",
+                    overflow: "visible",
+                    display: "grid",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-10">
+          <h2
+            style={{
+              display: "grid",
+              gridTemplateColumns: "auto 1fr",
+              alignItems: "center",
+              marginBottom: "1.5rem",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
+            <div style={{  flexShrink: 0, width: "28px", marginRight: "8px" }}>
+              <Code size={24} />
+            </div>
+            <span>Intermediate</span>
+          </h2>
+          <div className="bg-white rounded-lg p-6 shadow-md">
+            <div className="flex flex-wrap gap-2">
+              {[
+                "Java ( Hibernate, since MediaSpecs )",
+                "Node / Bun",
+                "Electron",
+                "Capacitor / Ionic",
+                "Tailwind",
+                "k8s",
+                "Elastic search",
+                "Grafana",
+                "Postgresql",
+                "MongoDb / NoSQL",
+                "Firebase / Firestore",
+                "Supabase",
+                "Azure",
+                "Keycloak",
+                "Github actions",
+                "Docker",
+                "Zx",
+                "Bash",
+                "Nx Monorepo",
+                "UI / UX",
+                "Vim",
+              ].map((skill, index) => (
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: "rgb(239, 246, 255)",
+                    color: "rgb(37, 99, 235)",
+                    borderRadius: "9999px",
+                    fontSize: "0.875rem",
+                    padding: "5px 0.75rem",
+                    whiteSpace: "nowrap",
+                    overflow: "visible",
+                    display: "grid",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2
+            style={{
+              height: "25px",
+              lineHeight: "25px",
+              display: "grid",
+              gridTemplateColumns: "auto 1fr",
+              marginBottom: "1.5rem",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
+            <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
+              <Award size={24} />
+            </div>
+            <span>Novice</span>
+          </h2>
+          <div className="bg-white rounded-lg p-6 shadow-md">
+            <div className="flex flex-wrap gap-2">
+              {["Helm", "Terraform", "OpenAI tools / API"].map((skill, index) => (
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: "rgb(239, 246, 255)",
+                    color: "rgb(37, 99, 235)",
+                    borderRadius: "9999px",
+                    fontSize: "0.875rem",
+                    padding: "5px 0.75rem",
+                    whiteSpace: "nowrap",
+                    overflow: "visible",
+                    display: "grid",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const resumeRef = useRef<HTMLDivElement>(null);
+  const skillsRef = useRef<HTMLDivElement>(null);
 
   const handleDownload = async () => {
-    if (!resumeRef.current) {
-      console.error("Resume reference not found");
+    if (!resumeRef.current || !skillsRef.current) {
+      console.error("Reference not found");
       return;
     }
 
     try {
-      // Create a canvas from the resume content with higher quality settings
-      const canvas = await html2canvas(resumeRef.current, {
+      // Generate PDF with both pages
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+        compress: false, // Better quality at larger file size
+      });
+
+      // First page - Resume
+      const resumeCanvas = await html2canvas(resumeRef.current, {
         scale: 3, // Increase scale for better quality
         logging: false,
         useCORS: true,
@@ -131,51 +302,50 @@ function App() {
         foreignObjectRendering: true, // Better handling of CSS
       });
 
-      // Calculate dimensions for A4 format
+      console.log(resumeCanvas,resumeCanvas.height,resumeCanvas.width);
       const imgWidth = 210; // A4 width in mm
-      const pageHeight = 297; // A4 height in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      // Create PDF with better quality settings
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
-        compress: false, // Better quality at larger file size
-      });
-
-      // Add the image to the PDF with higher quality
-      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+      const resumeImgHeight = (resumeCanvas.height * imgWidth) / resumeCanvas.width;
+      const resumeImgData = resumeCanvas.toDataURL("image/jpeg", 1.0);
+      console.log(resumeImgData);
+      
       pdf.addImage(
-        imgData,
+        resumeImgData,
         "JPEG",
         0,
         0,
         imgWidth,
-        imgHeight,
+        resumeImgHeight,
         undefined,
         "FAST"
       );
 
-      // If the resume is longer than one page, add additional pages
-      let heightLeft = imgHeight;
-      let position = 0;
+      // Second page - Skills
+      pdf.addPage();
 
-      while (heightLeft > pageHeight) {
-        position = -pageHeight * (1 + position / pageHeight);
-        pdf.addPage();
-        pdf.addImage(
-          imgData,
-          "JPEG",
-          0,
-          position,
-          imgWidth,
-          imgHeight,
-          undefined,
-          "FAST"
-        );
-        heightLeft -= pageHeight;
-      }
+      const skillsCanvas = await html2canvas(skillsRef.current, {
+        scale: 3,
+        logging: false,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#eeee",
+        foreignObjectRendering: false,
+      });
+      console.log(skillsCanvas,skillsCanvas.height,skillsCanvas.width);
+
+      const skillsImgHeight = (skillsCanvas.height * imgWidth) / skillsCanvas.width;
+      const skillsImgData = skillsCanvas.toDataURL("image/jpeg", 1.0);
+      console.log(skillsImgData);
+      
+      pdf.addImage(
+        skillsImgData,
+        "JPEG",
+        0,
+        0,
+        imgWidth,
+        skillsImgHeight,
+        undefined,
+        "FAST"
+      );
 
       // Save the PDF with higher quality
       pdf.save("jonas-vercammen-resume.pdf");
@@ -196,12 +366,13 @@ function App() {
         </button>
       </div>
 
+      {/* Main Resume Content */}
       <div ref={resumeRef}>
         <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <h1 className="text-4xl font-bold mb-4">Jonas Vercammen</h1>
             <p className="text-xl text-blue-100 mb-6">Frontend Developer</p>
-
+            
             <div className="flex flex-col sm:flex-row sm:gap-x-8">
               <div
                 style={{
@@ -358,7 +529,7 @@ function App() {
               </div>
               <span>Education</span>
             </h2>
-
+            
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="text-xl font-bold text-gray-800">
                 Bachelor Applied Informatics
@@ -376,6 +547,11 @@ function App() {
             </div>
           </section>
         </main>
+      </div>
+
+      {/* Skills Page - Hidden initially but used for PDF export */}
+      <div ref={skillsRef} className="">
+        <SkillsPage />
       </div>
     </div>
   );
