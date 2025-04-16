@@ -10,6 +10,7 @@ import {
   Award,
   Code,
   Star,
+  BookOpen,
 } from "lucide-react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -134,7 +135,7 @@ function SkillsPage() {
             fontWeight: "bold",
             fontSize: "1.5rem",
           }}>
-            <Star className="w-6 h-6 mr-2 flex-shrink-0" />
+            <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" />
             <span>Expert</span>
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md mb-6">
@@ -168,7 +169,7 @@ function SkillsPage() {
             fontWeight: "bold",
             fontSize: "1.5rem",
           }}>
-            <Code className="w-6 h-6 mr-2 flex-shrink-0" />
+            <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth={1.5} />
             <span>Intermediate</span>
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md mb-6">
@@ -208,7 +209,7 @@ function SkillsPage() {
                       padding: "0 0.75rem",
                       display: "inline-block",
                       whiteSpace: isLongSkill ? "normal" : "nowrap",
-                      maxWidth: isLongSkill ? "180px" : "none",
+                      maxWidth: 'auto',
                       overflow: isLongSkill ? "hidden" : "visible",
                       textOverflow: isLongSkill ? "ellipsis" : "clip",
                       verticalAlign: "middle"
@@ -231,7 +232,7 @@ function SkillsPage() {
             fontWeight: "bold",
             fontSize: "1.5rem",
           }}>
-            <Award className="w-6 h-6 mr-2 flex-shrink-0" />
+            <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" fillOpacity="0" stroke="currentColor" strokeWidth={1.5} />
             <span>Novice</span>
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md">
@@ -454,6 +455,7 @@ function App() {
                 marginBottom: "1.5rem",
                 fontWeight: "bold",
                 fontSize: "1.5rem",
+                alignItems: "center",
               }}
             >
               <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
@@ -535,6 +537,7 @@ function App() {
                 marginBottom: "1.5rem",
                 fontWeight: "bold",
                 fontSize: "1.5rem",
+                alignItems: "center",
               }}
             >
               <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
