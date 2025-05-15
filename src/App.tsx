@@ -1,4 +1,4 @@
-import  { useRef } from "react";
+import { useRef } from "react";
 import {
   Briefcase,
   Calendar,
@@ -102,7 +102,6 @@ function ExperienceCard({
                 justifyContent: "center",
                 alignContent: "center",
                 alignItems: "center",
-                
               }}
               title={skill} // Add tooltip for truncated skills
             >
@@ -117,7 +116,7 @@ function ExperienceCard({
 
 function SkillsPage() {
   const pillHeight = 28;
-  
+
   return (
     <div className="min-h-screen">
       <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
@@ -128,20 +127,30 @@ function SkillsPage() {
 
       <main className="container mx-auto px-4 max-w-4xl py-12">
         <section className="mb-12">
-          <h2 style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "1.5rem",
-            fontWeight: "bold",
-            fontSize: "1.5rem",
-          }}>
+          <h2
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "1.5rem",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
             <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" />
             <span>Expert</span>
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md mb-6">
             <div className="flex flex-wrap gap-2">
-              {["Angular", "HTML, CSS", "Javascript", "Git", "Github", "CI/CD"].map((skill, index) => (
-                <span 
+              {[
+                "Angular",
+                "HTML",
+                "CSS",
+                "Javascript",
+                "Git",
+                "Github",
+                "CI/CD",
+              ].map((skill, index) => (
+                <span
                   key={index}
                   style={{
                     backgroundColor: "rgb(239, 246, 255)",
@@ -151,7 +160,7 @@ function SkillsPage() {
                     padding: "0 0.75rem",
                     display: "inline-block",
                     whiteSpace: "nowrap",
-                    verticalAlign: "middle"
+                    verticalAlign: "middle",
                   }}
                 >
                   {skill}
@@ -162,14 +171,22 @@ function SkillsPage() {
         </section>
 
         <section className="mb-12">
-          <h2 style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "1.5rem",
-            fontWeight: "bold",
-            fontSize: "1.5rem",
-          }}>
-            <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth={1.5} />
+          <h2
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "1.5rem",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
+            <Star
+              className="w-6 h-6 mr-2 flex-shrink-0"
+              fill="currentColor"
+              fillOpacity="0.25"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            />
             <span>Intermediate</span>
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md mb-6">
@@ -177,10 +194,10 @@ function SkillsPage() {
               {[
                 "Java ( Hibernate, since MediaSpecs )",
                 "Node / Bun",
+                "Kubernetes",
                 "Electron",
                 "Capacitor / Ionic",
                 "Tailwind",
-                "k8s",
                 "Elastic search",
                 "Grafana",
                 "Postgresql",
@@ -199,7 +216,7 @@ function SkillsPage() {
               ].map((skill, index) => {
                 const isLongSkill = skill.length > 25;
                 return (
-                  <span 
+                  <span
                     key={index}
                     style={{
                       backgroundColor: "rgb(239, 246, 255)",
@@ -209,10 +226,10 @@ function SkillsPage() {
                       padding: "0 0.75rem",
                       display: "inline-block",
                       whiteSpace: isLongSkill ? "normal" : "nowrap",
-                      maxWidth: 'auto',
+                      maxWidth: "auto",
                       overflow: isLongSkill ? "hidden" : "visible",
                       textOverflow: isLongSkill ? "ellipsis" : "clip",
-                      verticalAlign: "middle"
+                      verticalAlign: "middle",
                     }}
                     title={skill}
                   >
@@ -225,35 +242,45 @@ function SkillsPage() {
         </section>
 
         <section>
-          <h2 style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: "1.5rem",
-            fontWeight: "bold",
-            fontSize: "1.5rem",
-          }}>
-            <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" fillOpacity="0" stroke="currentColor" strokeWidth={1.5} />
+          <h2
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "1.5rem",
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+            }}
+          >
+            <Star
+              className="w-6 h-6 mr-2 flex-shrink-0"
+              fill="currentColor"
+              fillOpacity="0"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            />
             <span>Novice</span>
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md">
             <div className="flex flex-wrap gap-2">
-              {["Helm", "Terraform", "OpenAI tools / API"].map((skill, index) => (
-                <span 
-                  key={index}
-                  style={{
-                    backgroundColor: "rgb(239, 246, 255)",
-                    color: "rgb(37, 99, 235)",
-                    borderRadius: "9999px",
-                    fontSize: "0.875rem",
-                    padding: "0 0.75rem",
-                    display: "inline-block",
-                    whiteSpace: "nowrap",
-                    verticalAlign: "middle"
-                  }}
-                >
-                  {skill}
-                </span>
-              ))}
+              {["Helm", "Terraform", "OpenAI tools / API"].map(
+                (skill, index) => (
+                  <span
+                    key={index}
+                    style={{
+                      backgroundColor: "rgb(239, 246, 255)",
+                      color: "rgb(37, 99, 235)",
+                      borderRadius: "9999px",
+                      fontSize: "0.875rem",
+                      padding: "0 0.75rem",
+                      display: "inline-block",
+                      whiteSpace: "nowrap",
+                      verticalAlign: "middle",
+                    }}
+                  >
+                    {skill}
+                  </span>
+                )
+              )}
             </div>
           </div>
         </section>
@@ -295,9 +322,10 @@ function App() {
       const resumeCanvas = await html2canvas(resumeRef.current, canvasOptions);
 
       const imgWidth = 210; // A4 width in mm
-      const resumeImgHeight = (resumeCanvas.height * imgWidth) / resumeCanvas.width;
+      const resumeImgHeight =
+        (resumeCanvas.height * imgWidth) / resumeCanvas.width;
       const resumeImgData = resumeCanvas.toDataURL("image/jpeg", 1.0);
-      
+
       pdf.addImage(
         resumeImgData,
         "JPEG",
@@ -311,12 +339,12 @@ function App() {
 
       // Second page - Skills
       pdf.addPage();
-      
-      skillsRef.current.style.position = 'absolute';
-      skillsRef.current.style.top = '0px';
-      skillsRef.current.style.left = '0px';
-      skillsRef.current.style.width = '100%';
-      skillsRef.current.style.height = '100%';
+
+      skillsRef.current.style.position = "absolute";
+      skillsRef.current.style.top = "0px";
+      skillsRef.current.style.left = "0px";
+      skillsRef.current.style.width = "100%";
+      skillsRef.current.style.height = "100%";
       const skillsCanvas = await html2canvas(skillsRef.current, {
         scale: 3,
         logging: false,
@@ -324,30 +352,30 @@ function App() {
         allowTaint: true,
         // backgroundColor: "#ffffff",
         foreignObjectRendering: true,
-
       });
 
-      const skillsImgHeight = (skillsCanvas.height * imgWidth) / skillsCanvas.width;
+      const skillsImgHeight =
+        (skillsCanvas.height * imgWidth) / skillsCanvas.width;
       const skillsImgData = skillsCanvas.toDataURL("image/jpeg", 1.0);
       // Convert the base64 image data to an Image object
       // const skillsImage = new Image();
       // skillsImage.src = skillsImgData;
-      
+
       // // Log the image object to console
       // console.log('Skills Image:', skillsImage);
       // // Create a temporary URL for the image to view it
       // const skillsImageUrl = URL.createObjectURL(
       //   await fetch(skillsImgData).then(res => res.blob())
       // );
-      
+
       // // Open the image in a new tab to verify it's correctly generated
       // window.open(skillsImageUrl, '_blank');
-      
+
       // // Clean up the temporary URL after a delay to ensure it's opened
       // setTimeout(() => {
       //   URL.revokeObjectURL(skillsImageUrl);
       // }, 5000);
-      
+
       // pdf.insertPage(1)
       pdf.addImage(
         skillsImgData,
@@ -361,9 +389,9 @@ function App() {
       );
 
       //reset the skills ref position
-      skillsRef.current.style.position = 'relative';
-      skillsRef.current.style.top = 'unset';
-      skillsRef.current.style.left = 'unset';
+      skillsRef.current.style.position = "relative";
+      skillsRef.current.style.top = "unset";
+      skillsRef.current.style.left = "unset";
 
       // Save the PDF with higher quality
       pdf.save("jonas-vercammen-resume.pdf");
@@ -390,7 +418,7 @@ function App() {
           <div className="container mx-auto px-4 max-w-4xl">
             <h1 className="text-4xl font-bold mb-4">Jonas Vercammen</h1>
             <p className="text-xl text-blue-100 mb-6">Frontend Developer</p>
-            
+
             <div className="flex flex-col sm:flex-row sm:gap-x-8">
               <div
                 style={{
@@ -472,6 +500,9 @@ function App() {
               skills={[
                 "Angular",
                 "TypeScript",
+                "CSS",
+                "Javascript",
+                "Kubernetes",
                 "SASS",
                 "HTML",
                 "Java",
@@ -487,7 +518,14 @@ function App() {
               role="Frontend Developer"
               duration="Oct 2017 - Apr 2021"
               description="Frontend developer consultant via Euricom"
-              skills={["Angular", "TypeScript", "Node.js", "CSS", "HTML"]}
+              skills={[
+                "Angular",
+                "TypeScript",
+                "CSS",
+                "Javascript",
+                "Node.js",
+                "HTML",
+              ]}
             />
 
             <ExperienceCard
@@ -497,9 +535,9 @@ function App() {
               description="Short consultancy assignment via Euricom for developing a Virtual Radio project at VRT."
               skills={[
                 "Angular",
-                "JavaScript",
                 "TypeScript",
                 "CSS",
+                "Javascript",
                 "HTML",
                 "Frontend development",
               ]}
@@ -520,11 +558,12 @@ function App() {
               description="9 weeks internship in development with Maiko Put around Kinect2."
               skills={[
                 "Angular 2",
-                "Electron",
-                "Firebase",
                 "TypeScript",
                 "CSS",
+                "Javascript",
                 "SASS",
+                "Electron",
+                "Firebase",
               ]}
             />
           </section>
@@ -545,7 +584,7 @@ function App() {
               </div>
               <span>Education</span>
             </h2>
-            
+
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="text-xl font-bold text-gray-800">
                 Bachelor Applied Informatics
@@ -566,7 +605,7 @@ function App() {
       </div>
 
       {/* Skills Page - Visible but with page break for PDF export */}
-      <div ref={skillsRef} style={{ pageBreakBefore: 'always' }}>
+      <div ref={skillsRef} style={{ pageBreakBefore: "always" }}>
         <SkillsPage />
       </div>
     </div>
