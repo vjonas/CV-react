@@ -78,7 +78,9 @@ function ExperienceCard({
         </div>
       )}
 
-      {description && <p className="mt-3 text-gray-700">{description}</p>}
+      {description && (
+        <p className="mt-3 text-gray-700" dangerouslySetInnerHTML={{ __html: description }} />
+      )}
 
       <div className="mt-4 flex flex-wrap gap-2">
         {skills.map((skill, index) => {
@@ -495,9 +497,13 @@ function App() {
 
             <ExperienceCard
               company="MediaSpecs BeLux"
-              role="Frontend Angular Developer"
+              role="Frontend Angular Developer - System Maintainer"
               duration="May 2021 - Present"
               location="Privaatweg 8, Hofstade"
+              description="I initially focused on outlining the requirements for the front-end development, specifically the customer-facing application. This involved creating the front office interface where users can search and navigate through items and entities in the database using tags and search queries. Users can also select entities and export them. I devised a plan to incorporate a more detailed planning tool and worked on the back office application, which manages these entities, ensures data is current, sends invitations to new users, and oversees user and customer management. This was my focus for the first two years. 
+              <br />
+              <br />
+Subsequently, I took charge of the entire system, encompassing both front and back-end development. I gained proficiency in Java, Keycloak, Grafana dashboards, Azure Kubernetes, and some DevOps practices using GitHub and GitHub Actions. My experience spans all layers of the company, including managing the Postgres database, updating Postgres, and Kubernetes, among other tasks."
               skills={[
                 "Angular",
                 "TypeScript",
@@ -519,12 +525,17 @@ function App() {
               company="Vente-exclusive (Veepee)"
               role="Frontend Developer"
               duration="Oct 2017 - Apr 2021"
-              description="Frontend developer consultant via Euricom"
+              description="I was involved in the logistics side of the company, where we managed customer orders, particularly focusing on back orders. We streamlined the process of managing and ordering with suppliers, by developing an easy to use dashboard. This dashboard allowed us to efficiently handle orders, track progress, and manage product categories to facilitate bulk orders for suppliers.
+              <br />
+              <br />
+Additionally, I contributed to the development of a returns app for the warehouse. This app streamlined the process when customers returned orders. It featured a dashboard to manage incoming boxes, approve returned orders, and included a mobile app for scanning barcodes on parcels and individual items. This functionality enabled automatic opening of the correct order in the UI app and facilitated the scanning and approval of items meant to be returned, with the app integrated with a barcode scanner."
+
               skills={[
                 "Angular",
                 "TypeScript",
                 "CSS",
                 "Javascript",
+                "Ionic",
                 "Node.js",
                 "HTML",
               ]}
@@ -534,13 +545,16 @@ function App() {
               company="VRT"
               role="Consultant – Virtual Radio Project"
               duration="September 2017"
-              description="Short consultancy assignment via Euricom for developing a Virtual Radio project at VRT."
+              description="Short consultancy assignment via Euricom for developing a Virtual Radio project at VRT. The project involved developing a sophisticated dashboard for an iPad, empowering the radio station to manage their show effortlessly while on the go, eliminating the need for bulky equipment. With a robust backend already in place, featuring high-throughput APIs and WebSockets, the challenge was to create an innovative virtual radio dashboard. 
+              <br />
+              This would provide comprehensive control over the broadcast, from playing jingles to accessing the microphone, and managing music playback with ease. "
               skills={[
                 "Angular",
                 "TypeScript",
                 "CSS",
                 "Javascript",
                 "HTML",
+                "WebSockets",
                 "Frontend development",
               ]}
             />
@@ -549,6 +563,7 @@ function App() {
               company="Euricom"
               role="Full Stack Javascript Developer"
               duration="Aug 2017 - Apr 2021"
+              description="Consultant Full stack developer using Angular, Node.js."
               skills={["Angular", "TypeScript", "Node.js", "CSS", "SASS"]}
             />
 
@@ -557,7 +572,12 @@ function App() {
               role="Information Technology Intern"
               duration="Apr 2017 - Jun 2017"
               location="Veldkant 35b"
-              description="9 weeks internship in development with Maiko Put around Kinect2."
+              description="We have developed an innovative application using Microsoft's Kinect 2, widely recognised from the Xbox product lineup. Our aim was to create a tool for physiotherapists, enabling them to design tailored exercise programmes for their patients to aid in recovery and improve health. The system comprises two applications: one for the physiotherapists to create exercises, and another for the patients to use at home.
+              <br />
+              <br />
+              Patients can connect the Kinect camera to their computer, where a visual guide displays the exercises they need to perform. The Kinect camera then monitors and ensures that the exercises are executed correctly by tracking the user's joints and body depth. This technology provides an effective way to support patients in their rehabilitation journey, ensuring they perform exercises accurately for optimal results.
+              The camera was connected via USB and managed through a desktop application with the Electron technology.
+              We won the best all round product of the 3 internship projects at that time."
               skills={[
                 "Angular 2",
                 "TypeScript",
