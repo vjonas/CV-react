@@ -120,14 +120,14 @@ function SkillsPage() {
   const pillHeight = 28;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" >
       <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-4">Skills Overview</h1>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 max-w-4xl py-12">
+      <main className="container mx-auto px-4 py-12">
         <section className="mb-12">
           <h2
             style={{
@@ -313,7 +313,7 @@ function App() {
 
       // Common html2canvas options for consistent rendering
       const canvasOptions = {
-        scale: 3, // Increase scale for better quality
+        scale: 1, // Increase scale for better quality
         logging: false,
         useCORS: true,
         allowTaint: true,
@@ -346,10 +346,10 @@ function App() {
       skillsRef.current.style.position = "absolute";
       skillsRef.current.style.top = "0px";
       skillsRef.current.style.left = "0px";
-      skillsRef.current.style.width = "100%";
-      skillsRef.current.style.height = "100%";
+      skillsRef.current.style.width = "2480px";
+      skillsRef.current.style.height = "3508px";
       const skillsCanvas = await html2canvas(skillsRef.current, {
-        scale: 3,
+        scale: 1,
         logging: false,
         useCORS: true,
         allowTaint: true,
@@ -416,11 +416,12 @@ function App() {
       </div>
 
       {/* Main Resume Content */}
-      <div ref={resumeRef}>
+      <div ref={resumeRef} style={{ width: "2480px", height: "3508px" }}>
         <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-          <div className="container mx-auto px-4 max-w-4xl">
+          <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold mb-4">Jonas Vercammen</h1>
             <p className="text-xl text-blue-100 mb-6">Frontend Developer</p>
+
 
             <div className="flex flex-col sm:flex-row sm:gap-x-8">
               <div
@@ -477,7 +478,7 @@ function App() {
           </div>
         </header>
 
-        <main className="container mx-auto px-4 max-w-4xl py-12">
+        <main className="container mx-auto px-4  py-12">
           <section className="mb-12">
             <h2
               style={{
@@ -577,7 +578,7 @@ Additionally, I contributed to the development of a returns app for the warehous
               <br />
               Patients can connect the Kinect camera to their computer, where a visual guide displays the exercises they need to perform. The Kinect camera then monitors and ensures that the exercises are executed correctly by tracking the user's joints and body depth. This technology provides an effective way to support patients in their rehabilitation journey, ensuring they perform exercises accurately for optimal results.
               The camera was connected via USB and managed through a desktop application with the Electron technology.
-              We won the best all round product of the 3 internship projects at that time."
+              We had the best all round product of the 3 internship projects at that time."
               skills={[
                 "Angular 2",
                 "TypeScript",
@@ -627,7 +628,7 @@ Additionally, I contributed to the development of a returns app for the warehous
       </div>
 
       {/* Skills Page - Visible but with page break for PDF export */}
-      <div ref={skillsRef} style={{ pageBreakBefore: "always" }}>
+      <div ref={skillsRef} style={{ width: "2480px", height: "3508px" }}>
         <SkillsPage />
       </div>
     </div>
