@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul{
+    list-style: unset;
+    margin: 0 1rem;
+    padding: 1rem;
+}

@@ -504,7 +504,17 @@ function App() {
               description="I initially focused on outlining the requirements for the front-end development, specifically the customer-facing application. This involved creating the front office interface where users can search and navigate through items and entities in the database using tags and search queries. Users can also select entities and export them. I devised a plan to incorporate a more detailed planning tool and worked on the back office application, which manages these entities, ensures data is current, sends invitations to new users, and oversees user and customer management. This was my focus for the first two years. 
               <br />
               <br />
-Subsequently, I took charge of the entire system, encompassing both front and back-end development. I gained proficiency in Java, Keycloak, Grafana dashboards, Azure Kubernetes, and some DevOps practices using GitHub and GitHub Actions. My experience spans all layers of the company, including managing the Postgres database, updating Postgres, and Kubernetes, among other tasks."
+Subsequently, I took charge of the entire system, encompassing both front and back-end development. I gained proficiency in Java, Keycloak, Grafana dashboards, Azure Kubernetes, and some DevOps practices using GitHub and GitHub Actions. My experience spans all layers of the company, including managing the Postgres database, updating Postgres, and Kubernetes, among other tasks.
+<ul>
+  <li>Frontend development with Angular and TypeScript</li>
+  <li>Backend development with Java</li>
+  <li>Authentication and authorization using Keycloak</li>
+  <li>Monitoring and visualization with Grafana dashboards</li>
+  <li>Container orchestration with Azure Kubernetes Service (AKS)</li>
+  <li>DevOps practices using GitHub and GitHub Actions</li>
+  <li>Database management with PostgreSQL</li>
+  <li>Infrastructure management including Kubernetes updates and maintenance</li>
+</ul>"
               skills={[
                 "Angular",
                 "TypeScript",
@@ -529,7 +539,18 @@ Subsequently, I took charge of the entire system, encompassing both front and ba
               description="I was involved in the logistics side of the company, where we managed customer orders, particularly focusing on back orders. We streamlined the process of managing and ordering with suppliers, by developing an easy to use dashboard. This dashboard allowed us to efficiently handle orders, track progress, and manage product categories to facilitate bulk orders for suppliers.
               <br />
               <br />
-Additionally, I contributed to the development of a returns app for the warehouse. This app streamlined the process when customers returned orders. It featured a dashboard to manage incoming boxes, approve returned orders, and included a mobile app for scanning barcodes on parcels and individual items. This functionality enabled automatic opening of the correct order in the UI app and facilitated the scanning and approval of items meant to be returned, with the app integrated with a barcode scanner."
+Additionally, I contributed to the development of a returns app for the warehouse. This app streamlined the process when customers returned orders. It featured a dashboard to manage incoming boxes, approve returned orders, and included a mobile app for scanning barcodes on parcels and individual items. This functionality enabled automatic opening of the correct order in the UI app and facilitated the scanning and approval of items meant to be returned, with the app integrated with a barcode scanner.
+              <br />
+              <br />
+Key responsibilities and achievements:
+<ul>
+  <li>Developed and maintained a logistics dashboard for efficient order management and supplier coordination</li>
+  <li>Created a comprehensive returns management system with integrated barcode scanning</li>
+  <li>Implemented mobile app functionality for warehouse operations</li>
+  <li>Streamlined back-order processes and supplier ordering workflows</li>
+  <li>Integrated barcode scanning technology for automated order processing</li>
+  <li>Designed and developed user-friendly interfaces for both warehouse staff and management</li>
+</ul>"
 
               skills={[
                 "Angular",
@@ -548,7 +569,21 @@ Additionally, I contributed to the development of a returns app for the warehous
               duration="September 2017"
               description="Short consultancy assignment via Euricom for developing a Virtual Radio project at VRT. The project involved developing a sophisticated dashboard for an iPad, empowering the radio station to manage their show effortlessly while on the go, eliminating the need for bulky equipment. With a robust backend already in place, featuring high-throughput APIs and WebSockets, the challenge was to create an innovative virtual radio dashboard. 
               <br />
-              This would provide comprehensive control over the broadcast, from playing jingles to accessing the microphone, and managing music playback with ease. "
+              <br />
+              Key responsibilities and achievements:
+              <ul>
+                <li>Developed an iPad-based virtual radio dashboard for mobile broadcasting</li>
+                <li>Integrated with existing high-throughput APIs and WebSockets backend</li>
+                <li>Created comprehensive broadcast control interface including:
+                  <ul>
+                    <li>Jingle playback management</li>
+                    <li>Microphone control system</li>
+                    <li>Music playback interface</li>
+                  </ul>
+                </li>
+                <li>Eliminated need for traditional bulky broadcasting equipment</li>
+                <li>Enabled mobile broadcasting capabilities for radio station staff</li>
+              </ul>"
               skills={[
                 "Angular",
                 "TypeScript",
@@ -573,12 +608,27 @@ Additionally, I contributed to the development of a returns app for the warehous
               role="Information Technology Intern"
               duration="Apr 2017 - Jun 2017"
               location="Veldkant 35b"
-              description="We have developed an innovative application using Microsoft's Kinect 2, widely recognised from the Xbox product lineup. Our aim was to create a tool for physiotherapists, enabling them to design tailored exercise programmes for their patients to aid in recovery and improve health. The system comprises two applications: one for the physiotherapists to create exercises, and another for the patients to use at home.
+              description="Developed an innovative physiotherapy application using Microsoft Kinect 2 technology, creating a dual-application system for exercise management and patient rehabilitation.
               <br />
               <br />
-              Patients can connect the Kinect camera to their computer, where a visual guide displays the exercises they need to perform. The Kinect camera then monitors and ensures that the exercises are executed correctly by tracking the user's joints and body depth. This technology provides an effective way to support patients in their rehabilitation journey, ensuring they perform exercises accurately for optimal results.
-              The camera was connected via USB and managed through a desktop application with the Electron technology.
-              We had the best all round product of the 3 internship projects at that time."
+              Key achievements and features:
+              <ul>
+                <li>Created two integrated applications:
+                  <ul>
+                    <li>Exercise design platform for physiotherapists</li>
+                    <li>Patient-facing exercise execution application</li>
+                  </ul>
+                </li>
+                <li>Implemented real-time motion tracking using Kinect camera:
+                  <ul>
+                    <li>Joint tracking for exercise accuracy</li>
+                    <li>Body depth monitoring</li>
+                    <li>Visual exercise guidance system</li>
+                  </ul>
+                </li>
+                <li>Built desktop application using Electron for USB camera management</li>
+                <li>Achieved recognition as the best overall product among three internship projects</li>
+              </ul>"
               skills={[
                 "Angular 2",
                 "TypeScript",
