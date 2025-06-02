@@ -346,8 +346,8 @@ function App() {
       skillsRef.current.style.position = "absolute";
       skillsRef.current.style.top = "0px";
       skillsRef.current.style.left = "0px";
-      skillsRef.current.style.width = "2480px";
-      skillsRef.current.style.height = "3508px";
+      skillsRef.current.style.width = "1240px";
+      skillsRef.current.style.height = "2700px";
       const skillsCanvas = await html2canvas(skillsRef.current, {
         scale: 1,
         logging: false,
@@ -416,7 +416,7 @@ function App() {
       </div>
 
       {/* Main Resume Content */}
-      <div ref={resumeRef} style={{ width: "2480px", height: "3508px" }}>
+      <div ref={resumeRef} style={{ width: "1240px" }}>
         <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold mb-4">Jonas Vercammen</h1>
@@ -628,7 +628,7 @@ Additionally, I contributed to the development of a returns app for the warehous
       </div>
 
       {/* Skills Page - Visible but with page break for PDF export */}
-      <div ref={skillsRef} style={{ width: "2480px", height: "3508px" }}>
+      <div ref={skillsRef} style={{ width: "1240px" }}>
         <SkillsPage />
       </div>
     </div>

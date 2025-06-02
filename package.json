@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "html-to-pdf-js": "^0.9.3",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
     "lucide-react": "^0.344.0",
+    "playwright": "^1.52.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-to-pdf": "^1.0.1"
