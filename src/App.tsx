@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef } from 'react';
 import {
   Briefcase,
   Calendar,
@@ -11,9 +11,9 @@ import {
   Code,
   Star,
   BookOpen,
-} from "lucide-react";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
+} from 'lucide-react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 function ExperienceCard({
   company,
@@ -36,13 +36,13 @@ function ExperienceCard({
 
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "auto 1fr",
-          alignItems: "center",
-          marginTop: "0.5rem",
+          display: 'grid',
+          gridTemplateColumns: 'auto 1fr',
+          alignItems: 'center',
+          marginTop: '0.5rem',
         }}
       >
-        <div style={{ flexShrink: 0, width: "20px", marginRight: "8px" }}>
+        <div style={{ flexShrink: 0, width: '20px', marginRight: '8px' }}>
           <Briefcase size={16} className="text-gray-600" />
         </div>
         <span className="font-medium text-gray-600">{role}</span>
@@ -50,13 +50,13 @@ function ExperienceCard({
 
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "auto 1fr",
-          alignItems: "center",
-          marginTop: "0.25rem",
+          display: 'grid',
+          gridTemplateColumns: 'auto 1fr',
+          alignItems: 'center',
+          marginTop: '0.25rem',
         }}
       >
-        <div style={{ flexShrink: 0, width: "20px", marginRight: "8px" }}>
+        <div style={{ flexShrink: 0, width: '20px', marginRight: '8px' }}>
           <Calendar size={16} className="text-gray-600" />
         </div>
         <span className="text-gray-600">{duration}</span>
@@ -65,13 +65,13 @@ function ExperienceCard({
       {location && (
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "auto 1fr",
-            alignItems: "center",
-            marginTop: "0.25rem",
+            display: 'grid',
+            gridTemplateColumns: 'auto 1fr',
+            alignItems: 'center',
+            marginTop: '0.25rem',
           }}
         >
-          <div style={{ flexShrink: 0, width: "20px", marginRight: "8px" }}>
+          <div style={{ flexShrink: 0, width: '20px', marginRight: '8px' }}>
             <MapPin size={16} className="text-gray-600" />
           </div>
           <span className="text-gray-600">{location}</span>
@@ -79,7 +79,10 @@ function ExperienceCard({
       )}
 
       {description && (
-        <p className="mt-3 text-gray-700" dangerouslySetInnerHTML={{ __html: description }} />
+        <p
+          className="mt-3 text-gray-700"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       )}
 
       <div className="mt-4 flex flex-wrap gap-2">
@@ -91,19 +94,19 @@ function ExperienceCard({
             <span
               key={index}
               style={{
-                backgroundColor: "rgb(239, 246, 255)",
-                color: "rgb(37, 99, 235)",
-                borderRadius: "9999px",
-                fontSize: "0.875rem",
-                padding: "5px 0.75rem",
-                whiteSpace: isLongSkill ? "normal" : "nowrap",
-                maxWidth: "auto",
-                overflow: isLongSkill ? "hidden" : "visible",
-                textOverflow: isLongSkill ? "ellipsis" : "clip",
-                display: "grid",
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
+                backgroundColor: 'rgb(239, 246, 255)',
+                color: 'rgb(37, 99, 235)',
+                borderRadius: '9999px',
+                fontSize: '0.875rem',
+                padding: '5px 0.75rem',
+                whiteSpace: isLongSkill ? 'normal' : 'nowrap',
+                maxWidth: 'auto',
+                overflow: isLongSkill ? 'hidden' : 'visible',
+                textOverflow: isLongSkill ? 'ellipsis' : 'clip',
+                display: 'grid',
+                justifyContent: 'center',
+                alignContent: 'center',
+                alignItems: 'center',
               }}
               title={skill} // Add tooltip for truncated skills
             >
@@ -120,7 +123,7 @@ function SkillsPage() {
   const pillHeight = 28;
 
   return (
-    <div className="min-h-screen" >
+    <div className="min-h-screen">
       <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-4">Skills Overview</h1>
@@ -131,11 +134,11 @@ function SkillsPage() {
         <section className="mb-12">
           <h2
             style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "1.5rem",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '1.5rem',
+              fontWeight: 'bold',
+              fontSize: '1.5rem',
             }}
           >
             <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" />
@@ -144,25 +147,25 @@ function SkillsPage() {
           <div className="bg-white rounded-lg p-6 shadow-md mb-6">
             <div className="flex flex-wrap gap-2">
               {[
-                "Angular",
-                "HTML",
-                "CSS",
-                "Javascript",
-                "Git",
-                "Github",
-                "CI/CD",
+                'Angular',
+                'HTML',
+                'CSS',
+                'Javascript',
+                'Git',
+                'Github',
+                'CI/CD',
               ].map((skill, index) => (
                 <span
                   key={index}
                   style={{
-                    backgroundColor: "rgb(239, 246, 255)",
-                    color: "rgb(37, 99, 235)",
-                    borderRadius: "9999px",
-                    fontSize: "0.875rem",
-                    padding: "0 0.75rem",
-                    display: "inline-block",
-                    whiteSpace: "nowrap",
-                    verticalAlign: "middle",
+                    backgroundColor: 'rgb(239, 246, 255)',
+                    color: 'rgb(37, 99, 235)',
+                    borderRadius: '9999px',
+                    fontSize: '0.875rem',
+                    padding: '0 0.75rem',
+                    display: 'inline-block',
+                    whiteSpace: 'nowrap',
+                    verticalAlign: 'middle',
                   }}
                 >
                   {skill}
@@ -175,11 +178,11 @@ function SkillsPage() {
         <section className="mb-12">
           <h2
             style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "1.5rem",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '1.5rem',
+              fontWeight: 'bold',
+              fontSize: '1.5rem',
             }}
           >
             <Star
@@ -194,45 +197,45 @@ function SkillsPage() {
           <div className="bg-white rounded-lg p-6 shadow-md mb-6">
             <div className="flex flex-wrap gap-2">
               {[
-                "Java ( Hibernate, since MediaSpecs )",
-                "Node / Bun",
-                "Kubernetes",
-                "ArgoCD",
-                "Electron",
-                "Capacitor / Ionic",
-                "Tailwind",
-                "Elastic search",
-                "Grafana",
-                "Postgresql",
-                "MongoDb / NoSQL",
-                "Firebase / Firestore",
-                "Supabase",
-                "Azure",
-                "Keycloak",
-                "Github actions",
-                "Docker",
-                "Zx",
-                "Bash",
-                "Nx Monorepo",
-                "UI / UX",
-                "Vim",
+                'Java ( Hibernate, since MediaSpecs )',
+                'Node / Bun',
+                'Kubernetes',
+                'ArgoCD',
+                'Electron',
+                'Capacitor / Ionic',
+                'Tailwind',
+                'Elastic search',
+                'Grafana',
+                'Postgresql',
+                'MongoDb / NoSQL',
+                'Firebase / Firestore',
+                'Supabase',
+                'Azure',
+                'Keycloak',
+                'Github actions',
+                'Docker',
+                'Zx',
+                'Bash',
+                'Nx Monorepo',
+                'UI / UX',
+                'Vim',
               ].map((skill, index) => {
                 const isLongSkill = skill.length > 25;
                 return (
                   <span
                     key={index}
                     style={{
-                      backgroundColor: "rgb(239, 246, 255)",
-                      color: "rgb(37, 99, 235)",
-                      borderRadius: "9999px",
-                      fontSize: "0.875rem",
-                      padding: "0 0.75rem",
-                      display: "inline-block",
-                      whiteSpace: isLongSkill ? "normal" : "nowrap",
-                      maxWidth: "auto",
-                      overflow: isLongSkill ? "hidden" : "visible",
-                      textOverflow: isLongSkill ? "ellipsis" : "clip",
-                      verticalAlign: "middle",
+                      backgroundColor: 'rgb(239, 246, 255)',
+                      color: 'rgb(37, 99, 235)',
+                      borderRadius: '9999px',
+                      fontSize: '0.875rem',
+                      padding: '0 0.75rem',
+                      display: 'inline-block',
+                      whiteSpace: isLongSkill ? 'normal' : 'nowrap',
+                      maxWidth: 'auto',
+                      overflow: isLongSkill ? 'hidden' : 'visible',
+                      textOverflow: isLongSkill ? 'ellipsis' : 'clip',
+                      verticalAlign: 'middle',
                     }}
                     title={skill}
                   >
@@ -247,11 +250,11 @@ function SkillsPage() {
         <section>
           <h2
             style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "1.5rem",
-              fontWeight: "bold",
-              fontSize: "1.5rem",
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '1.5rem',
+              fontWeight: 'bold',
+              fontSize: '1.5rem',
             }}
           >
             <Star
@@ -265,24 +268,24 @@ function SkillsPage() {
           </h2>
           <div className="bg-white rounded-lg p-6 shadow-md">
             <div className="flex flex-wrap gap-2">
-              {["Helm", "Terraform", "OpenAI tools / API"].map(
+              {['Helm', 'Terraform', 'OpenAI tools / API'].map(
                 (skill, index) => (
                   <span
                     key={index}
                     style={{
-                      backgroundColor: "rgb(239, 246, 255)",
-                      color: "rgb(37, 99, 235)",
-                      borderRadius: "9999px",
-                      fontSize: "0.875rem",
-                      padding: "0 0.75rem",
-                      display: "inline-block",
-                      whiteSpace: "nowrap",
-                      verticalAlign: "middle",
+                      backgroundColor: 'rgb(239, 246, 255)',
+                      color: 'rgb(37, 99, 235)',
+                      borderRadius: '9999px',
+                      fontSize: '0.875rem',
+                      padding: '0 0.75rem',
+                      display: 'inline-block',
+                      whiteSpace: 'nowrap',
+                      verticalAlign: 'middle',
                     }}
                   >
                     {skill}
                   </span>
-                )
+                ),
               )}
             </div>
           </div>
@@ -298,16 +301,16 @@ function App() {
 
   const handleDownload = async () => {
     if (!resumeRef.current || !skillsRef.current) {
-      console.error("Reference not found");
+      console.error('Reference not found');
       return;
     }
 
     try {
       // Generate PDF with both pages
       const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "mm",
-        format: "a4",
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
         compress: false, // Better quality at larger file size
       });
 
@@ -317,7 +320,7 @@ function App() {
         logging: false,
         useCORS: true,
         allowTaint: true,
-        backgroundColor: "#ffffff",
+        backgroundColor: '#ffffff',
         foreignObjectRendering: true,
       };
 
@@ -327,27 +330,27 @@ function App() {
       const imgWidth = 210; // A4 width in mm
       const resumeImgHeight =
         (resumeCanvas.height * imgWidth) / resumeCanvas.width;
-      const resumeImgData = resumeCanvas.toDataURL("image/jpeg", 1.0);
+      const resumeImgData = resumeCanvas.toDataURL('image/jpeg', 1.0);
 
       pdf.addImage(
         resumeImgData,
-        "JPEG",
+        'JPEG',
         0,
         0,
         imgWidth,
         resumeImgHeight,
         undefined,
-        "FAST"
+        'FAST',
       );
 
       // Second page - Skills
       pdf.addPage();
 
-      skillsRef.current.style.position = "absolute";
-      skillsRef.current.style.top = "0px";
-      skillsRef.current.style.left = "0px";
-      skillsRef.current.style.width = "1240px";
-      skillsRef.current.style.height = "2700px";
+      skillsRef.current.style.position = 'absolute';
+      skillsRef.current.style.top = '0px';
+      skillsRef.current.style.left = '0px';
+      skillsRef.current.style.width = '1240px';
+      skillsRef.current.style.height = '2700px';
       const skillsCanvas = await html2canvas(skillsRef.current, {
         scale: 1,
         logging: false,
@@ -359,7 +362,7 @@ function App() {
 
       const skillsImgHeight =
         (skillsCanvas.height * imgWidth) / skillsCanvas.width;
-      const skillsImgData = skillsCanvas.toDataURL("image/jpeg", 1.0);
+      const skillsImgData = skillsCanvas.toDataURL('image/jpeg', 1.0);
       // Convert the base64 image data to an Image object
       // const skillsImage = new Image();
       // skillsImage.src = skillsImgData;
@@ -382,24 +385,24 @@ function App() {
       // pdf.insertPage(1)
       pdf.addImage(
         skillsImgData,
-        "JPEG",
+        'JPEG',
         0,
         0,
         imgWidth,
         skillsImgHeight,
         undefined,
-        "FAST"
+        'FAST',
       );
 
       //reset the skills ref position
-      skillsRef.current.style.position = "relative";
-      skillsRef.current.style.top = "unset";
-      skillsRef.current.style.left = "unset";
+      skillsRef.current.style.position = 'relative';
+      skillsRef.current.style.top = 'unset';
+      skillsRef.current.style.left = 'unset';
 
       // Save the PDF with higher quality
-      pdf.save("jonas-vercammen-resume.pdf");
+      pdf.save('jonas-vercammen-resume.pdf');
     } catch (error) {
-      console.error("Error generating PDF:", error);
+      console.error('Error generating PDF:', error);
     }
   };
 
@@ -416,24 +419,23 @@ function App() {
       </div>
 
       {/* Main Resume Content */}
-      <div ref={resumeRef} style={{ width: "1240px" }}>
+      <div ref={resumeRef} style={{ width: '1240px' }}>
         <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold mb-4">Jonas Vercammen</h1>
             <p className="text-xl text-blue-100 mb-6">Frontend Developer</p>
 
-
             <div className="flex flex-col sm:flex-row sm:gap-x-8">
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "auto 1fr",
-                  alignItems: "center",
-                  marginBottom: "1rem",
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  alignItems: 'center',
+                  marginBottom: '1rem',
                 }}
               >
                 <div
-                  style={{ flexShrink: 0, width: "20px", marginRight: "8px" }}
+                  style={{ flexShrink: 0, width: '20px', marginRight: '8px' }}
                 >
                   <Mail size={16} className="text-blue-100" />
                 </div>
@@ -446,29 +448,34 @@ function App() {
               </div>
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "auto 1fr",
-                  alignItems: "center",
-                  marginBottom: "1rem",
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  alignItems: 'center',
+                  marginBottom: '1rem',
                 }}
               >
                 <div
-                  style={{ flexShrink: 0, width: "20px", marginRight: "8px" }}
+                  style={{ flexShrink: 0, width: '20px', marginRight: '8px' }}
                 >
                   <Phone size={16} className="text-blue-100" />
                 </div>
-                <span className="text-blue-100">0487144894</span>
+                <a
+                  href="tel:+32469682993"
+                  className="text-blue-100 hover:text-white"
+                >
+                  +32469682993
+                </a>
               </div>
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "auto 1fr",
-                  alignItems: "center",
-                  marginBottom: "1rem",
+                  display: 'grid',
+                  gridTemplateColumns: 'auto 1fr',
+                  alignItems: 'center',
+                  marginBottom: '1rem',
                 }}
               >
                 <div
-                  style={{ flexShrink: 0, width: "20px", marginRight: "8px" }}
+                  style={{ flexShrink: 0, width: '20px', marginRight: '8px' }}
                 >
                   <MapPin size={16} className="text-blue-100" />
                 </div>
@@ -482,23 +489,45 @@ function App() {
           <section className="mb-12">
             <h2
               style={{
-                display: "grid",
-                gridTemplateColumns: "auto 1fr",
-                marginBottom: "1.5rem",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-                alignItems: "center",
+                display: 'grid',
+                gridTemplateColumns: 'auto 1fr',
+                marginBottom: '1.5rem',
+                fontWeight: 'bold',
+                fontSize: '1.5rem',
+                alignItems: 'center',
               }}
             >
-              <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
+              <div style={{ flexShrink: 0, width: '28px', marginRight: '8px' }}>
                 <Briefcase size={24} />
               </div>
               <span>Professional Experience</span>
             </h2>
 
             <ExperienceCard
+              company="Adwanted"
+              role="Full stack developer"
+              duration="August 2025 - Present"
+              location="Remote"
+              description="For a client we have built a media planner tool to navigate through all the surveys and create targeted media plans. I was responsible for the infrastructure and monitoring setup in Azure Kubernetes with GitHub Actions. Backoffice features were created in React and NodeJS.
+<br />
+<br />
+<strong>Skills:</strong> Azure Kubernetes, Node.js, React, GitHub Actions, CI/CD"
+              skills={[
+                'React',
+                'Node.js',
+                'Microsoft Azure',
+                'Azure Kubernetes Service (AKS)',
+                'Kubernetes',
+                'GitHub Actions',
+                'CI/CD',
+                'Infrastructure as Code',
+                'Monitoring',
+              ]}
+            />
+
+            <ExperienceCard
               company="MediaSpecs BeLux"
-              role="Frontend Angular Developer - System Maintainer"
+              role="Full stack Angular Java Developer + System Maintainer"
               duration="May 2021 - Present"
               location="Privaatweg 8, Hofstade"
               description="I initially focused on outlining the requirements for the front-end development, specifically the customer-facing application. This involved creating the front office interface where users can search and navigate through items and entities in the database using tags and search queries. Users can also select entities and export them. I devised a plan to incorporate a more detailed planning tool and worked on the back office application, which manages these entities, ensures data is current, sends invitations to new users, and oversees user and customer management. This was my focus for the first two years. 
@@ -516,19 +545,19 @@ Subsequently, I took charge of the entire system, encompassing both front and ba
   <li>Infrastructure management including Kubernetes updates and maintenance</li>
 </ul>"
               skills={[
-                "Angular",
-                "TypeScript",
-                "CSS",
-                "Javascript",
-                "Kubernetes",
-                "ArgoCD",
-                "SASS",
-                "HTML",
-                "Java",
-                "Keycloak",
-                "Microsoft Azure",
-                "Azure Kubernetes Service (AKS)",
-                "Node.js",
+                'Angular',
+                'TypeScript',
+                'CSS',
+                'Javascript',
+                'Kubernetes',
+                'ArgoCD',
+                'SASS',
+                'HTML',
+                'Java',
+                'Keycloak',
+                'Microsoft Azure',
+                'Azure Kubernetes Service (AKS)',
+                'Node.js',
               ]}
             />
 
@@ -551,15 +580,14 @@ Key responsibilities and achievements:
   <li>Integrated barcode scanning technology for automated order processing</li>
   <li>Designed and developed user-friendly interfaces for both warehouse staff and management</li>
 </ul>"
-
               skills={[
-                "Angular",
-                "TypeScript",
-                "CSS",
-                "Javascript",
-                "Ionic",
-                "Node.js",
-                "HTML",
+                'Angular',
+                'TypeScript',
+                'CSS',
+                'Javascript',
+                'Ionic',
+                'Node.js',
+                'HTML',
               ]}
             />
 
@@ -585,13 +613,13 @@ Key responsibilities and achievements:
                 <li>Enabled mobile broadcasting capabilities for radio station staff</li>
               </ul>"
               skills={[
-                "Angular",
-                "TypeScript",
-                "CSS",
-                "Javascript",
-                "HTML",
-                "WebSockets",
-                "Frontend development",
+                'Angular',
+                'TypeScript',
+                'CSS',
+                'Javascript',
+                'HTML',
+                'WebSockets',
+                'Frontend development',
               ]}
             />
 
@@ -600,7 +628,7 @@ Key responsibilities and achievements:
               role="Full Stack Javascript Developer"
               duration="Aug 2017 - Apr 2021"
               description="Consultant Full stack developer using Angular, Node.js."
-              skills={["Angular", "TypeScript", "Node.js", "CSS", "SASS"]}
+              skills={['Angular', 'TypeScript', 'Node.js', 'CSS', 'SASS']}
             />
 
             <ExperienceCard
@@ -630,13 +658,13 @@ Key responsibilities and achievements:
                 <li>Achieved recognition as the best overall product among three internship projects</li>
               </ul>"
               skills={[
-                "Angular 2",
-                "TypeScript",
-                "CSS",
-                "Javascript",
-                "SASS",
-                "Electron",
-                "Firebase",
+                'Angular 2',
+                'TypeScript',
+                'CSS',
+                'Javascript',
+                'SASS',
+                'Electron',
+                'Firebase',
               ]}
             />
           </section>
@@ -644,15 +672,15 @@ Key responsibilities and achievements:
           <section>
             <h2
               style={{
-                display: "grid",
-                gridTemplateColumns: "auto 1fr",
-                marginBottom: "1.5rem",
-                fontWeight: "bold",
-                fontSize: "1.5rem",
-                alignItems: "center",
+                display: 'grid',
+                gridTemplateColumns: 'auto 1fr',
+                marginBottom: '1.5rem',
+                fontWeight: 'bold',
+                fontSize: '1.5rem',
+                alignItems: 'center',
               }}
             >
-              <div style={{ flexShrink: 0, width: "28px", marginRight: "8px" }}>
+              <div style={{ flexShrink: 0, width: '28px', marginRight: '8px' }}>
                 <GraduationCap size={24} />
               </div>
               <span>Education</span>
@@ -664,10 +692,10 @@ Key responsibilities and achievements:
               </h3>
               <div
                 style={{
-                  marginTop: "0.5rem",
-                  color: "rgb(75, 85, 99)",
-                  lineHeight: "1.5rem",
-                  height: "auto",
+                  marginTop: '0.5rem',
+                  color: 'rgb(75, 85, 99)',
+                  lineHeight: '1.5rem',
+                  height: 'auto',
                 }}
               >
                 KDG Hogeschool Antwerp
@@ -678,7 +706,7 @@ Key responsibilities and achievements:
       </div>
 
       {/* Skills Page - Visible but with page break for PDF export */}
-      <div ref={skillsRef} style={{ width: "1240px" }}>
+      <div ref={skillsRef} style={{ width: '1240px' }}>
         <SkillsPage />
       </div>
     </div>
