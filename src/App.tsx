@@ -426,7 +426,7 @@ function App() {
         <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold mb-4">Jonas Vercammen</h1>
-            <p className="text-xl text-blue-100 mb-6">Frontend Developer</p>
+            <p className="text-xl text-blue-100 mb-6">Full Stack Developer</p>
 
             <div className="flex flex-col sm:flex-row sm:gap-x-8">
               <div
@@ -510,8 +510,8 @@ function App() {
               company="Adwanted"
               role="Full stack developer"
               duration="August 2025 - Present"
-              location="Remote"
-              description="For a client we have built a media planner tool to navigate through all the surveys and create targeted media plans. I was responsible for the infrastructure and monitoring setup in Azure Kubernetes with GitHub Actions. Backoffice features were created in React and NodeJS.
+              location="Remote - Paris, France"
+              description="For a client we have built a media planner tool to navigate through all the surveys and create targeted media plans. I was mostly responsible for the infrastructure and monitoring setup in Azure Kubernetes with GitHub Actions. I created backoffice features - with AI - in React and NodeJS. Cursor and Claude Code was used a lot in the project, by all developers.
 <br />
 <br />
 <strong>Skills:</strong> Azure Kubernetes, Node.js, React, GitHub Actions, CI/CD"
@@ -529,23 +529,24 @@ function App() {
             />
 
             <ExperienceCard
-              company="MediaSpecs BeLux"
-              role="Full stack Angular Java Developer + System Maintainer"
+              company="Adwanted - MediaSpecs BeLux"
+              role="Full stack Angular - Java - Node.js Developer + System Maintainer"
               duration="May 2021 - Present"
               location="Privaatweg 8, Hofstade"
               description="I initially focused on outlining the requirements for the front-end development, specifically the customer-facing application. This involved creating the front office interface where users can search and navigate through items and entities in the database using tags and search queries. Users can also select entities and export them. I devised a plan to incorporate a more detailed planning tool and worked on the back office application, which manages these entities, ensures data is current, sends invitations to new users, and oversees user and customer management. This was my focus for the first two years. 
               <br />
               <br />
-Subsequently, I took charge of the entire system, encompassing both front and back-end development. I gained proficiency in Java, Keycloak, Grafana dashboards, Azure Kubernetes, and some DevOps practices using GitHub and GitHub Actions. My experience spans all layers of the company, including managing the Postgres database, updating Postgres, and Kubernetes, among other tasks.
+Subsequently, I took charge of the entire system, encompassing both front and back-end development. I gained proficiency in Java, Keycloak, Grafana dashboards, Azure Kubernetes, and some DevOps practices using GitHub and GitHub Actions. My experience spans all layers of the company, including managing and updating the Postgres database, Kubernetes and other tasks.
 <ul>
   <li>Frontend development with Angular and TypeScript</li>
-  <li>Backend development with Java</li>
+  <li>Backend development with Java and Node.js</li>
   <li>Authentication and authorization using Keycloak</li>
   <li>Monitoring and visualization with Grafana dashboards</li>
   <li>Container orchestration with Azure Kubernetes Service (AKS)</li>
   <li>DevOps practices using GitHub and GitHub Actions</li>
   <li>Database management with PostgreSQL</li>
   <li>Infrastructure management including Kubernetes updates and maintenance</li>
+  <li>MCP server setup POC to connect it with internal chat bot tools (Cursor and Claude Code, ...)</li>
 </ul>"
               skills={[
                 'Angular',
