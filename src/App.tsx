@@ -148,12 +148,14 @@ function SkillsPage() {
             <div className="flex flex-wrap gap-2">
               {[
                 'Angular',
+                'Node.js',
                 'HTML',
                 'CSS',
                 'Javascript',
                 'Git',
                 'Github',
                 'CI/CD',
+                'Cursor',
               ].map((skill, index) => (
                 <span
                   key={index}
@@ -219,6 +221,7 @@ function SkillsPage() {
                 'Nx Monorepo',
                 'UI / UX',
                 'Vim',
+                'React',
               ].map((skill, index) => {
                 const isLongSkill = skill.length > 25;
                 return (
