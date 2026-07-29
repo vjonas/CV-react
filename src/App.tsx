@@ -6,14 +6,8 @@ import {
   GraduationCap,
   Mail,
   Phone,
-  Download,
-  Award,
-  Code,
   Star,
-  BookOpen,
 } from 'lucide-react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 
 function ExperienceCard({
   company,
@@ -120,8 +114,6 @@ function ExperienceCard({
 }
 
 function SkillsPage() {
-  const pillHeight = 28;
-
   return (
     <div className="min-h-screen">
       <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
@@ -155,6 +147,8 @@ function SkillsPage() {
                 'Git',
                 'Github',
                 'CI/CD',
+                'Agile/Scrum',
+                'REST APIs / JSON integrations',
                 'Cursor',
               ].map((skill, index) => (
                 <span
@@ -208,7 +202,7 @@ function SkillsPage() {
                 'Tailwind',
                 'Elastic search',
                 'Grafana',
-                'Postgresql',
+                'PostgreSQL / SQL',
                 'MongoDb / NoSQL',
                 'Firebase / Firestore',
                 'Supabase',
@@ -220,6 +214,12 @@ function SkillsPage() {
                 'Bash',
                 'Nx Monorepo',
                 'UI / UX',
+                'Figma',
+                'Design Systems',
+                'Component Libraries',
+                'Jest',
+                'Cypress',
+                'Refactoring / Legacy Modernization',
                 'Vim',
                 'React',
               ].map((skill, index) => {
@@ -302,125 +302,8 @@ function App() {
   const resumeRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
 
-  const handleDownload = async () => {
-    if (!resumeRef.current || !skillsRef.current) {
-      console.error('Reference not found');
-      return;
-    }
-
-    try {
-      // Generate PDF with both pages
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-        compress: false, // Better quality at larger file size
-      });
-
-      // Common html2canvas options for consistent rendering
-      const canvasOptions = {
-        scale: 1, // Increase scale for better quality
-        logging: false,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        foreignObjectRendering: true,
-      };
-
-      // First page - Resume
-      const resumeCanvas = await html2canvas(resumeRef.current, canvasOptions);
-
-      const imgWidth = 210; // A4 width in mm
-      const resumeImgHeight =
-        (resumeCanvas.height * imgWidth) / resumeCanvas.width;
-      const resumeImgData = resumeCanvas.toDataURL('image/jpeg', 1.0);
-
-      pdf.addImage(
-        resumeImgData,
-        'JPEG',
-        0,
-        0,
-        imgWidth,
-        resumeImgHeight,
-        undefined,
-        'FAST',
-      );
-
-      // Second page - Skills
-      pdf.addPage();
-
-      skillsRef.current.style.position = 'absolute';
-      skillsRef.current.style.top = '0px';
-      skillsRef.current.style.left = '0px';
-      skillsRef.current.style.width = '1240px';
-      skillsRef.current.style.height = '2700px';
-      const skillsCanvas = await html2canvas(skillsRef.current, {
-        scale: 1,
-        logging: false,
-        useCORS: true,
-        allowTaint: true,
-        // backgroundColor: "#ffffff",
-        foreignObjectRendering: true,
-      });
-
-      const skillsImgHeight =
-        (skillsCanvas.height * imgWidth) / skillsCanvas.width;
-      const skillsImgData = skillsCanvas.toDataURL('image/jpeg', 1.0);
-      // Convert the base64 image data to an Image object
-      // const skillsImage = new Image();
-      // skillsImage.src = skillsImgData;
-
-      // // Log the image object to console
-      // console.log('Skills Image:', skillsImage);
-      // // Create a temporary URL for the image to view it
-      // const skillsImageUrl = URL.createObjectURL(
-      //   await fetch(skillsImgData).then(res => res.blob())
-      // );
-
-      // // Open the image in a new tab to verify it's correctly generated
-      // window.open(skillsImageUrl, '_blank');
-
-      // // Clean up the temporary URL after a delay to ensure it's opened
-      // setTimeout(() => {
-      //   URL.revokeObjectURL(skillsImageUrl);
-      // }, 5000);
-
-      // pdf.insertPage(1)
-      pdf.addImage(
-        skillsImgData,
-        'JPEG',
-        0,
-        0,
-        imgWidth,
-        skillsImgHeight,
-        undefined,
-        'FAST',
-      );
-
-      //reset the skills ref position
-      skillsRef.current.style.position = 'relative';
-      skillsRef.current.style.top = 'unset';
-      skillsRef.current.style.left = 'unset';
-
-      // Save the PDF with higher quality
-      pdf.save('jonas-vercammen-resume.pdf');
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="fixed top-4 right-4 z-10">
-        <button
-          onClick={handleDownload}
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <Download className="w-4 h-4" />
-          Download PDF
-        </button>
-      </div>
-
       {/* Main Resume Content */}
       <div ref={resumeRef} style={{ width: '1240px' }}>
         <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
@@ -507,17 +390,41 @@ function App() {
             </h2>
 
             <ExperienceCard
+              company="NCCN - National Crisis Center of Belgium"
+              role="Frontend Developer Angular"
+              duration="May 2026 - Current"
+              description="Improving and building on the current Paragon application as an Angular frontend developer, working in an Agile/Scrum environment with GitHub, Docker, and Azure."
+              skills={[
+                'Angular',
+                'TypeScript',
+                'Git',
+                'CSS',
+                'HTML',
+                'Agile/Scrum',
+                'GitHub',
+                'Docker',
+                'Microsoft Azure',
+              ]}
+            />
+
+            <ExperienceCard
               company="Adwanted"
               role="Full stack developer"
-              duration="August 2025 - Present"
+              duration="August 2025 - March 2026"
               location="Remote - Paris, France"
-              description="For a client we have built a media planner tool to navigate through all the surveys and create targeted media plans. I was mostly responsible for the infrastructure and monitoring setup in Azure Kubernetes with GitHub Actions. I created backoffice features - with AI - in React and NodeJS. Cursor and Claude Code was used a lot in the project, by all developers.
+              description="For a client we have built a media planner tool to navigate through all the surveys and create targeted media plans. I implemented features from Figma designs created by a UX designer, with React and Node.js integrations around JSON APIs and PostgreSQL-backed data. I was mostly responsible for the infrastructure and monitoring setup in Azure Kubernetes with GitHub Actions. I created backoffice features - with AI - in React and NodeJS. Cursor and Claude Code was used a lot in the project, by all developers. The project was delivered in an Agile/Scrum way of working.
 <br />
 <br />
-<strong>Skills:</strong> Azure Kubernetes, Node.js, React, GitHub Actions, CI/CD"
+<strong>Skills:</strong> Azure Kubernetes, Node.js, React, PostgreSQL, SQL, Figma, JSON/API integrations, GitHub Actions, CI/CD, Agile/Scrum"
               skills={[
                 'React',
                 'Node.js',
+                'Git',
+                'Figma',
+                'REST APIs',
+                'JSON integrations',
+                'PostgreSQL',
+                'SQL',
                 'Microsoft Azure',
                 'Azure Kubernetes Service (AKS)',
                 'Kubernetes',
@@ -525,26 +432,34 @@ function App() {
                 'CI/CD',
                 'Infrastructure as Code',
                 'Monitoring',
+                'Agile/Scrum',
               ]}
             />
 
             <ExperienceCard
               company="Adwanted - MediaSpecs BeLux"
-              role="Full stack Angular - Java - Node.js Developer + System Maintainer"
-              duration="May 2021 - Present"
-              location="Privaatweg 8, Hofstade"
-              description="I initially focused on outlining the requirements for the front-end development, specifically the customer-facing application. This involved creating the front office interface where users can search and navigate through items and entities in the database using tags and search queries. Users can also select entities and export them. I devised a plan to incorporate a more detailed planning tool and worked on the back office application, which manages these entities, ensures data is current, sends invitations to new users, and oversees user and customer management. This was my focus for the first two years. 
-              <br />
-              <br />
-Subsequently, I took charge of the entire system, encompassing both front and back-end development. I gained proficiency in Java, Keycloak, Grafana dashboards, Azure Kubernetes, and some DevOps practices using GitHub and GitHub Actions. My experience spans all layers of the company, including managing and updating the Postgres database, Kubernetes and other tasks.
+              role="Senior Frontend Angular Developer"
+              duration="May 2021 - March 2026"
+              location="Privateweg 8, Hofstade"
+              description="I initially focused on outlining the requirements for the front-end development, specifically the customer-facing application. This involved creating the front office interface where users can search and navigate through items and entities in the database using tags and search queries. Users can also select entities and export them. I devised a plan to incorporate a more detailed planning tool and worked on the back office application, which manages these entities, ensures data is current, sends invitations to new users, and oversees user and customer management. This was my focus for the first two years. The product used a Figma-based design system that was translated into reusable Angular components and component-library patterns.
+               <br />
+               <br />
+Subsequently, I took charge of the entire system, encompassing both front and back-end development. I gained proficiency in Java, Keycloak, Grafana dashboards, Azure Kubernetes, and some DevOps practices using GitHub and GitHub Actions. My experience spans all layers of the company, including managing and updating the Postgres database, Kubernetes and other tasks. I also coached and coordinated external developers from a Hungarian partner company by preparing sprint tasks, clarifying requirements, reviewing delivered work, and guiding improvements.
 <ul>
   <li>Frontend development with Angular and TypeScript</li>
   <li>Backend development with Java and Node.js</li>
+  <li>Agile/Scrum delivery with sprint planning, task breakdown, reviews, and iterative releases</li>
+  <li>Coaching and technical guidance for external developers, including work review and feedback</li>
+  <li>Design-system implementation from Figma and reusable component-library development</li>
+  <li>JSON/API integrations between front office, back office, and backend services</li>
   <li>Authentication and authorization using Keycloak</li>
   <li>Monitoring and visualization with Grafana dashboards</li>
   <li>Container orchestration with Azure Kubernetes Service (AKS)</li>
-  <li>DevOps practices using GitHub and GitHub Actions</li>
-  <li>Database management with PostgreSQL</li>
+  <li>DevOps practices using Git and GitHub Actions</li>
+  <li>SQL queries and database management with PostgreSQL</li>
+  <li>Unit and E2E testing experience, including Cypress for end-to-end coverage</li>
+  <li>Repeated Angular version upgrades across the application, including the January 2026 upgrade from Angular v19 to v21</li>
+  <li>Legacy modernization, refactoring, code cleanup, and maintainability improvements</li>
   <li>Infrastructure management including Kubernetes updates and maintenance</li>
   <li>MCP server setup POC to connect it with internal chat bot tools (Cursor and Claude Code, ...)</li>
 </ul>"
@@ -553,15 +468,28 @@ Subsequently, I took charge of the entire system, encompassing both front and ba
                 'TypeScript',
                 'CSS',
                 'Javascript',
+                'Git',
+                'Figma',
+                'Design Systems',
+                'Component Libraries',
+                'REST APIs',
+                'JSON integrations',
                 'Kubernetes',
                 'ArgoCD',
                 'SASS',
                 'HTML',
                 'Java',
                 'Keycloak',
+                'PostgreSQL',
+                'SQL',
+                'Cypress',
+                'Angular Upgrades',
+                'Refactoring',
+                'Legacy Modernization',
                 'Microsoft Azure',
                 'Azure Kubernetes Service (AKS)',
                 'Node.js',
+                'Agile/Scrum',
               ]}
             />
 
@@ -569,7 +497,7 @@ Subsequently, I took charge of the entire system, encompassing both front and ba
               company="Vente-exclusive (Veepee)"
               role="Frontend Developer"
               duration="Oct 2017 - Apr 2021"
-              description="I was involved in the logistics side of the company, where we managed customer orders, particularly focusing on back orders. We streamlined the process of managing and ordering with suppliers, by developing an easy to use dashboard. This dashboard allowed us to efficiently handle orders, track progress, and manage product categories to facilitate bulk orders for suppliers.
+              description="I was involved in the logistics side of the company, where we managed customer orders, particularly focusing on back orders. We streamlined the process of managing and ordering with suppliers, by developing an easy to use dashboard. This dashboard allowed us to efficiently handle orders, track progress, and manage product categories to facilitate bulk orders for suppliers. The project used a design system, and I built reusable component-library pieces that could be shared across multiple teams. I also collaborated closely with backend teams working in .NET and integrated the frontend with JSON/API-driven services.
               <br />
               <br />
 Additionally, I contributed to the development of a returns app for the warehouse. This app streamlined the process when customers returned orders. It featured a dashboard to manage incoming boxes, approve returned orders, and included a mobile app for scanning barcodes on parcels and individual items. This functionality enabled automatic opening of the correct order in the UI app and facilitated the scanning and approval of items meant to be returned, with the app integrated with a barcode scanner.
@@ -580,6 +508,11 @@ Key responsibilities and achievements:
   <li>Developed and maintained a logistics dashboard for efficient order management and supplier coordination</li>
   <li>Created a comprehensive returns management system with integrated barcode scanning</li>
   <li>Implemented mobile app functionality for warehouse operations</li>
+  <li>Built reusable Angular components from a design system for use by multiple teams</li>
+  <li>Worked in Agile/Scrum teams with iterative delivery and sprint-based planning</li>
+  <li>Integrated Angular applications with JSON APIs and backend services maintained by .NET teams</li>
+  <li>Added and maintained unit tests with Jest</li>
+  <li>Refactored legacy Angular code to improve table rendering, change detection, and overall performance</li>
   <li>Streamlined back-order processes and supplier ordering workflows</li>
   <li>Integrated barcode scanning technology for automated order processing</li>
   <li>Designed and developed user-friendly interfaces for both warehouse staff and management</li>
@@ -587,10 +520,20 @@ Key responsibilities and achievements:
               skills={[
                 'Angular',
                 'TypeScript',
+                'Git',
                 'CSS',
                 'Javascript',
                 'Ionic',
                 'Node.js',
+                '.NET collaboration',
+                'Design Systems',
+                'Component Libraries',
+                'REST APIs',
+                'JSON integrations',
+                'Jest',
+                'Refactoring',
+                'Performance optimization',
+                'Agile/Scrum',
                 'HTML',
               ]}
             />
@@ -620,10 +563,14 @@ Key responsibilities and achievements:
                 'Angular',
                 'TypeScript',
                 'CSS',
+                'Git',
                 'Javascript',
                 'HTML',
+                'REST APIs',
+                'JSON integrations',
                 'WebSockets',
                 'Frontend development',
+                'Agile/Scrum',
               ]}
             />
 
@@ -631,8 +578,16 @@ Key responsibilities and achievements:
               company="Euricom"
               role="Full Stack Javascript Developer"
               duration="Aug 2017 - Apr 2021"
-              description="Consultant Full stack developer using Angular, Node.js."
-              skills={['Angular', 'TypeScript', 'Node.js', 'CSS', 'SASS']}
+              description="Consultant Full stack developer using Angular and Node.js, delivering client projects in Agile/Scrum environments."
+              skills={[
+                'Angular',
+                'TypeScript',
+                'Git',
+                'Node.js',
+                'CSS',
+                'SASS',
+                'Agile/Scrum',
+              ]}
             />
 
             <ExperienceCard
@@ -664,11 +619,13 @@ Key responsibilities and achievements:
               skills={[
                 'Angular 2',
                 'TypeScript',
+                'Git',
                 'CSS',
                 'Javascript',
                 'SASS',
                 'Electron',
                 'Firebase',
+                'Agile/Scrum',
               ]}
             />
           </section>
