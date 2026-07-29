@@ -17,6 +17,17 @@ ul{
         margin: 10mm 0;
     }
 
+    /* The two sheets that open with a gradient header let it bleed to the top
+       paper edge. Sheets carrying flowing text keep their top margin so no
+       line ends up against the edge. */
+    @page :first {
+        margin-top: 0;
+    }
+
+    @page skills {
+        margin-top: 0;
+    }
+
     html {
         font-size: 13px;
     }
@@ -60,6 +71,7 @@ ul{
 
     .cv-page-break {
         break-before: page;
+        page: skills;
     }
 
     /* Keep a card, and the heading that introduces it, on one page. */
