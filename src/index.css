@@ -7,3 +7,79 @@ ul{
     margin: 0 1rem;
     padding: 1rem;
 }
+
+/* Print rules drive the Playwright A4 export in server/pdf-export.mjs.
+   Horizontal gutters come from padding rather than the @page margin so the
+   gradient headers keep bleeding to the paper edge on every page. */
+@media print {
+    @page {
+        size: A4;
+        margin: 10mm 0;
+    }
+
+    html {
+        font-size: 13px;
+    }
+
+    /* Print on white so the page background can't end mid-sheet; the cards
+       stay readable because they get a border below. */
+    body,
+    .cv-page,
+    .bg-gray-50 {
+        background: #fff !important;
+    }
+
+    .cv-page {
+        width: 100% !important;
+    }
+
+    .cv-page .container {
+        max-width: none !important;
+        padding-left: 12mm !important;
+        padding-right: 12mm !important;
+    }
+
+    .cv-page,
+    .cv-page .min-h-screen {
+        min-height: 0 !important;
+    }
+
+    .cv-page header {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    .cv-page main {
+        padding-top: 1.5rem !important;
+        padding-bottom: 0 !important;
+    }
+
+    .cv-page section {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .cv-page-break {
+        break-before: page;
+    }
+
+    /* Keep a card, and the heading that introduces it, on one page. */
+    .cv-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid rgb(229, 231, 235);
+    }
+
+    h1, h2, h3 {
+        break-after: avoid;
+    }
+
+    li {
+        break-inside: avoid;
+    }
+
+    /* A card taller than one sheet has to break somewhere. Keeping the tag
+       block intact moves the break above it instead of through a tag row. */
+    .cv-tags {
+        break-inside: avoid;
+    }
+}

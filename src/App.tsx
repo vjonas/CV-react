@@ -25,7 +25,7 @@ function ExperienceCard({
   skills: string[];
 }) {
   return (
-    <div className="bg-white rounded-lg p-6 shadow-md mb-6">
+    <div className="cv-card bg-white rounded-lg p-6 shadow-md mb-6">
       <h3 className="text-xl font-bold text-gray-800">{company}</h3>
 
       <div
@@ -79,7 +79,7 @@ function ExperienceCard({
         />
       )}
 
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="cv-tags mt-4 flex flex-wrap gap-2">
         {skills.map((skill, index) => {
           // Determine if this is a long skill that needs special handling
           const isLongSkill = skill.length > 25;
@@ -136,7 +136,7 @@ function SkillsPage() {
             <Star className="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" />
             <span>Expert</span>
           </h2>
-          <div className="bg-white rounded-lg p-6 shadow-md mb-6">
+          <div className="cv-card bg-white rounded-lg p-6 shadow-md mb-6">
             <div className="flex flex-wrap gap-2">
               {[
                 'Angular',
@@ -190,7 +190,7 @@ function SkillsPage() {
             />
             <span>Intermediate</span>
           </h2>
-          <div className="bg-white rounded-lg p-6 shadow-md mb-6">
+          <div className="cv-card bg-white rounded-lg p-6 shadow-md mb-6">
             <div className="flex flex-wrap gap-2">
               {[
                 'Java ( Hibernate, since MediaSpecs )',
@@ -274,7 +274,7 @@ function SkillsPage() {
             />
             <span>Novice</span>
           </h2>
-          <div className="bg-white rounded-lg p-6 shadow-md">
+          <div className="cv-card bg-white rounded-lg p-6 shadow-md">
             <div className="flex flex-wrap gap-2">
               {['Helm', 'Terraform', 'OpenAI tools / API'].map(
                 (skill, index) => (
@@ -310,7 +310,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Main Resume Content */}
-      <div ref={resumeRef} style={{ width: '1240px' }}>
+      <div ref={resumeRef} className="cv-page" style={{ width: '1240px' }}>
         <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
           <div className="container mx-auto px-4">
             <h1 className="text-4xl font-bold mb-4">Jonas Vercammen</h1>
@@ -662,7 +662,7 @@ Key responsibilities and achievements:
               <span>Education</span>
             </h2>
 
-            <div className="bg-white rounded-lg p-6 shadow-md">
+            <div className="cv-card bg-white rounded-lg p-6 shadow-md">
               <h3 className="text-xl font-bold text-gray-800">
                 Bachelor Applied Informatics
               </h3>
@@ -682,7 +682,11 @@ Key responsibilities and achievements:
       </div>
 
       {/* Skills Page - Visible but with page break for PDF export */}
-      <div ref={skillsRef} style={{ width: '1240px' }}>
+      <div
+        ref={skillsRef}
+        className="cv-page cv-page-break"
+        style={{ width: '1240px' }}
+      >
         <SkillsPage />
       </div>
     </div>

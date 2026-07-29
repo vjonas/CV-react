@@ -22,8 +22,9 @@ async function exportToPDF(url, outputPath) {
     await page.pdf({
       path: outputPath,
       printBackground: true,
-      width: "1240px",
-      height: "2700px",
+      format: "A4",
+      // Page size and margins come from the @page rule in src/index.css.
+      preferCSSPageSize: true,
     });
     console.log(`PDF saved to ${outputPath}`);
   } catch (err) {
