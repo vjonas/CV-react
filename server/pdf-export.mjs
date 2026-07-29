@@ -4,8 +4,18 @@
 
 import { chromium } from "playwright";
 
+// Playwright's own Chromium download hangs on this machine, so prefer the
+// system Chrome install and only fall back to the bundled browser.
+async function launchBrowser() {
+  try {
+    return await chromium.launch({ channel: "chrome" });
+  } catch {
+    return await chromium.launch({});
+  }
+}
+
 async function exportToPDF(url, outputPath) {
-  const browser = await chromium.launch({});
+  const browser = await launchBrowser();
   const page = await browser.newPage();
   try {
     await page.goto(url, { waitUntil: "networkidle" });

@@ -203,6 +203,11 @@ function SkillsPage() {
                 'Elastic search',
                 'Grafana',
                 'PostgreSQL / SQL',
+                'PostGIS',
+                'OpenLayers',
+                'GeoJSON / KML / WKT',
+                'Geospatial / GIS data processing',
+                'Python',
                 'MongoDb / NoSQL',
                 'Firebase / Firestore',
                 'Supabase',
@@ -393,7 +398,7 @@ function App() {
               company="NCCN - National Crisis Center of Belgium"
               role="Frontend Developer Angular"
               duration="May 2026 - Current"
-              description="Improving and building on the current Paragon application as an Angular frontend developer, working in an Agile/Scrum environment with GitHub, Docker, and Azure."
+              description="Improving and building on the current Paragon application as an Angular frontend developer, working in an Agile/Scrum environment with GitHub, Docker, and Azure. A core part of the application is map-based situational awareness built on OpenLayers. I extended the anchor management module so that selecting an anchor on the map opens an overlay with more detailed information about that anchor, working with GeoJSON feature data, layer styling, and map interactions."
               skills={[
                 'Angular',
                 'TypeScript',
@@ -404,6 +409,9 @@ function App() {
                 'GitHub',
                 'Docker',
                 'Microsoft Azure',
+                'OpenLayers',
+                'GeoJSON',
+                'Geospatial / GIS',
               ]}
             />
 
@@ -461,6 +469,9 @@ Subsequently, I took charge of the entire system, encompassing both front and ba
   <li>Repeated Angular version upgrades across the application, including the January 2026 upgrade from Angular v19 to v21</li>
   <li>Legacy modernization, refactoring, code cleanup, and maintainability improvements</li>
   <li>Infrastructure management including Kubernetes updates and maintenance</li>
+  <li>Geospatial links between Belgian regions and their corresponding media, so media could be searched location-based across media types and calendar events</li>
+  <li>Spatial data modelling and location-based queries in PostgreSQL/PostGIS to support the region-to-media relations</li>
+  <li>Python and Bash scripting for geodata conversion and bulk import of region and location data (GeoJSON, WKT)</li>
   <li>MCP server setup POC to connect it with internal chat bot tools (Cursor and Claude Code, ...)</li>
 </ul>"
               skills={[
@@ -482,6 +493,10 @@ Subsequently, I took charge of the entire system, encompassing both front and ba
                 'Keycloak',
                 'PostgreSQL',
                 'SQL',
+                'PostGIS',
+                'GeoJSON',
+                'Python',
+                'Geospatial / GIS',
                 'Cypress',
                 'Angular Upgrades',
                 'Refactoring',
