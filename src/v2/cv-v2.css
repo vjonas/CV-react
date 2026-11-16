@@ -1,0 +1,733 @@
+/* v2 CV, Swiss grid. International Typographic Style on a strict 12-column
+   grid: section labels in columns 1–3, content from column 4, one signal
+   colour for dates, the current-role marker and the experience rule.
+
+   Every rule is scoped under .cv2 because this file is bundled next to the
+   v1 styles in index.css. The tokens sit on :root (only while v2 is mounted)
+   so the page background can use them too. */
+
+:root:has(.cv2) {
+  --c2-paper: #ffffff;
+  --c2-ink: #111214;
+  --c2-ink-2: #5a5d63;
+  --c2-hair: #d6d7da;
+  --c2-signal: #e2401b;
+  --c2-font: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --c2-gap: 24px;
+  background: var(--c2-paper);
+}
+@media (prefers-color-scheme: dark) {
+  :root:has(.cv2):not([data-theme='light']) {
+    --c2-paper: #17181a;
+    --c2-ink: #ecebe8;
+    --c2-ink-2: #9c9ea2;
+    --c2-hair: #35373b;
+    --c2-signal: #ff5a35;
+    color-scheme: dark;
+  }
+}
+:root:has(.cv2)[data-theme='dark'] {
+  --c2-paper: #17181a;
+  --c2-ink: #ecebe8;
+  --c2-ink-2: #9c9ea2;
+  --c2-hair: #35373b;
+  --c2-signal: #ff5a35;
+  color-scheme: dark;
+}
+body:has(.cv2) {
+  background: var(--c2-paper);
+}
+
+.cv2 {
+  min-height: 100vh;
+  background: var(--c2-paper);
+  color: var(--c2-ink);
+  font-family: var(--c2-font);
+  font-size: 15px;
+  line-height: 1.5;
+  font-stretch: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+.cv2 *,
+.cv2 *::before,
+.cv2 *::after {
+  box-sizing: border-box;
+}
+.cv2 a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--c2-hair);
+}
+.cv2 a:hover,
+.cv2 a:focus-visible {
+  border-bottom-color: var(--c2-signal);
+}
+.cv2 a:focus-visible {
+  outline: 2px solid var(--c2-signal);
+  outline-offset: 2px;
+}
+/* index.css gives every ul a margin, padding and bullets; v2 draws its own. */
+.cv2 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cv2 p,
+.cv2 h1,
+.cv2 h2,
+.cv2 h3,
+.cv2 dl,
+.cv2 dd {
+  margin: 0;
+}
+
+.cv2 .page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-block: 40px 96px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .cv2 .page {
+    padding-left: max(40px, env(safe-area-inset-left, 0px));
+    padding-right: max(40px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.cv2 .grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--c2-gap);
+}
+
+.cv2 .micro {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--c2-ink-2);
+}
+
+/* ---------- Masthead ---------- */
+.cv2 .meta {
+  row-gap: 8px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c2-ink);
+}
+.cv2 .meta > * {
+  grid-column: span 3;
+}
+.cv2 .meta .micro:last-child {
+  text-align: right;
+}
+
+.cv2 .masthead {
+  padding-top: 40px;
+  row-gap: 32px;
+}
+.cv2 .name {
+  grid-column: 1 / span 9;
+  grid-row: 1;
+  font-family: var(--c2-font);
+  font-weight: 860;
+  font-stretch: 88%;
+  font-size: clamp(56px, 12.4vw, 172px);
+  line-height: 0.84;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+.cv2 .name span {
+  display: block;
+}
+/* The one curve on the page: a circle cut, set flush right against the name. */
+.cv2 .portrait {
+  grid-column: 10 / span 3;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+  width: clamp(120px, 14vw, 184px);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--c2-hair);
+}
+.cv2 .role-line {
+  grid-column: 1 / span 6;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.cv2 .role-line small {
+  display: block;
+  color: var(--c2-ink-2);
+  font-size: 0.56em;
+  letter-spacing: 0;
+  margin-top: 8px;
+  font-weight: 400;
+}
+.cv2 .contact {
+  grid-column: 7 / span 6;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px var(--c2-gap);
+  align-content: start;
+}
+.cv2 .contact div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.cv2 .contact dd {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Sections ---------- */
+.cv2 section {
+  margin-top: 88px;
+}
+.cv2 .sec-head {
+  grid-column: 1 / span 3;
+  padding-top: 14px;
+  border-top: 1px solid var(--c2-ink);
+}
+.cv2 .sec-head h2 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.cv2 .sec-head p {
+  margin-top: 4px;
+}
+.cv2 .sec-body {
+  grid-column: 4 / -1;
+  padding-top: 14px;
+  border-top: 1px solid var(--c2-ink);
+  min-width: 0;
+}
+
+.cv2 .profile .sec-body {
+  grid-column: 4 / span 8;
+}
+.cv2 .profile p {
+  font-size: clamp(20px, 2.1vw, 27px);
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+  max-width: 34em;
+  font-weight: 400;
+}
+
+/* The one rule in signal colour */
+.cv2 .experience .sec-body {
+  border-top: 4px solid var(--c2-signal);
+  padding-top: 0;
+}
+.cv2 .experience .sec-head {
+  border-top-width: 4px;
+}
+
+.cv2 .role {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  column-gap: var(--c2-gap);
+  padding-block: 28px 32px;
+  border-bottom: 1px solid var(--c2-hair);
+}
+.cv2 .role:last-child {
+  border-bottom: 0;
+}
+.cv2 .role-date {
+  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cv2 .yr {
+  font-size: 40px;
+  font-weight: 800;
+  font-stretch: 80%;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--c2-signal);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.cv2 .to {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c2-signal);
+  font-variant-numeric: tabular-nums;
+}
+.cv2 .period {
+  font-size: 12px;
+  color: var(--c2-ink-2);
+  font-variant-numeric: tabular-nums;
+}
+.cv2 .now {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.cv2 .now i {
+  width: 10px;
+  height: 10px;
+  background: var(--c2-signal);
+  display: inline-block;
+}
+
+.cv2 .role-body {
+  grid-column: 3 / span 5;
+  min-width: 0;
+}
+.cv2 .company {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.cv2 .company span {
+  font-weight: 400;
+  color: var(--c2-ink-2);
+}
+.cv2 .role-body h3 {
+  margin-top: 6px;
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.cv2 .loc {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--c2-ink-2);
+}
+.cv2 .summary {
+  margin-top: 16px;
+  max-width: 62ch;
+}
+.cv2 .summary + .summary {
+  margin-top: 12px;
+}
+.cv2 .hl-label {
+  margin-top: 20px;
+}
+.cv2 .hl {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+  max-width: 62ch;
+}
+.cv2 .hl-label + .hl {
+  margin-top: 10px;
+}
+.cv2 .hl > li,
+.cv2 .hl .sub > li {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+}
+.cv2 .hl > li::before {
+  content: '—';
+  color: var(--c2-ink-2);
+}
+.cv2 .hl .sub {
+  margin-top: 6px;
+  display: grid;
+  gap: 4px;
+  color: var(--c2-ink-2);
+}
+.cv2 .hl .sub > li::before {
+  content: '·';
+  font-weight: 700;
+}
+
+.cv2 .role-skills {
+  grid-column: 8 / span 2;
+  min-width: 0;
+}
+.cv2 .role-skills ul {
+  margin-top: 8px;
+  display: grid;
+  gap: 2px;
+  font-size: 13px;
+}
+.cv2 .role-skills li {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Skills ---------- */
+.cv2 .skills .sec-body {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  column-gap: var(--c2-gap);
+  row-gap: 40px;
+}
+.cv2 .legend {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  font-size: 12px;
+  color: var(--c2-ink-2);
+}
+.cv2 .legend b {
+  color: var(--c2-ink);
+  font-weight: 700;
+  margin-right: 6px;
+}
+.cv2 .tier {
+  min-width: 0;
+}
+.cv2 .tier.t-a {
+  grid-column: 1 / span 2;
+}
+.cv2 .tier.t-b {
+  grid-column: 3 / span 5;
+}
+.cv2 .tier.t-c {
+  grid-column: 8 / span 2;
+}
+.cv2 .tier-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--c2-ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+.cv2 .mark {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.cv2 .count {
+  color: var(--c2-ink-2);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.cv2 .tier ul {
+  margin-top: 12px;
+  display: grid;
+  gap: 3px;
+  font-size: 15px;
+}
+.cv2 .tier.t-a ul {
+  font-weight: 600;
+}
+.cv2 .tier.t-b ul {
+  display: block;
+  columns: 3 140px;
+  column-gap: var(--c2-gap);
+}
+.cv2 .tier.t-b li {
+  break-inside: avoid;
+  padding-bottom: 3px;
+}
+.cv2 .tier.t-c ul {
+  color: var(--c2-ink-2);
+}
+
+/* ---------- Education + colophon ---------- */
+.cv2 .edu-row {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  column-gap: var(--c2-gap);
+}
+.cv2 .edu-row h3 {
+  grid-column: 1 / span 5;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.cv2 .edu-row p {
+  grid-column: 6 / span 4;
+  color: var(--c2-ink-2);
+  padding-top: 4px;
+}
+
+.cv2 .colophon {
+  margin-top: 96px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c2-ink);
+  row-gap: 8px;
+}
+.cv2 .colophon > * {
+  grid-column: span 6;
+}
+.cv2 .colophon > :last-child {
+  text-align: right;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 1000px) {
+  .cv2 .role-body {
+    grid-column: 3 / -1;
+  }
+  .cv2 .role-skills {
+    grid-column: 3 / -1;
+    margin-top: 18px;
+  }
+  .cv2 .role-skills ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 0;
+  }
+  .cv2 .role-skills li:not(:last-child)::after {
+    content: '/';
+    color: var(--c2-ink-2);
+    margin: 0 8px;
+  }
+  .cv2 .tier.t-a {
+    grid-column: 1 / span 4;
+  }
+  .cv2 .tier.t-c {
+    grid-column: 5 / span 5;
+  }
+  .cv2 .tier.t-b {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+}
+@media screen and (max-width: 760px) {
+  .cv2 .meta > * {
+    grid-column: span 6;
+  }
+  .cv2 .meta .micro:last-child {
+    text-align: left;
+  }
+  .cv2 .name {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .cv2 .portrait {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: start;
+    width: 104px;
+  }
+  .cv2 .role-line,
+  .cv2 .contact {
+    grid-column: 1 / -1;
+  }
+  .cv2 .sec-head,
+  .cv2 .sec-body,
+  .cv2 .profile .sec-body {
+    grid-column: 1 / -1;
+  }
+  .cv2 .sec-head {
+    padding-bottom: 18px;
+  }
+  .cv2 .sec-body {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .cv2 .experience .sec-body {
+    border-top: 0;
+  }
+  .cv2 .experience .sec-head {
+    border-top: 4px solid var(--c2-signal);
+  }
+  .cv2 section {
+    margin-top: 64px;
+  }
+  .cv2 .role-date {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin-bottom: 14px;
+  }
+  .cv2 .now {
+    margin-top: 0;
+  }
+  .cv2 .role-body,
+  .cv2 .role-skills {
+    grid-column: 1 / -1;
+  }
+  .cv2 .edu-row h3,
+  .cv2 .edu-row p {
+    grid-column: 1 / -1;
+  }
+  .cv2 .colophon > * {
+    grid-column: 1 / -1;
+  }
+  .cv2 .colophon > :last-child {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 520px) {
+  .cv2 .contact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cv2 .tier.t-a,
+  .cv2 .tier.t-c,
+  .cv2 .tier.t-b {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+}
+
+/* ---------- Print: A4 ----------
+   Sheet size and vertical margins come from the @page rules in index.css
+   (10mm top and bottom, 0 on top of the first sheet). As in v1, the side
+   gutters are padding, and the first sheet gets its top space from padding. */
+@media print {
+  .cv2 {
+    min-height: 0;
+    font-size: 9.5pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  :root:has(.cv2),
+  :root:has(.cv2)[data-theme] {
+    --c2-paper: #ffffff;
+    --c2-ink: #111214;
+    --c2-ink-2: #5a5d63;
+    --c2-hair: #d6d7da;
+    --c2-signal: #e2401b;
+    --c2-gap: 14px;
+    color-scheme: light;
+  }
+  .cv2 .page {
+    max-width: none;
+    padding: 12mm 14mm 0;
+  }
+  .cv2 .name {
+    font-size: 60pt;
+  }
+  .cv2 .portrait {
+    width: 30mm;
+  }
+  .cv2 .masthead {
+    padding-top: 18px;
+    row-gap: 16px;
+  }
+  .cv2 .role-line {
+    grid-column: 1 / span 6;
+    font-size: 16pt;
+  }
+  .cv2 .contact {
+    grid-column: 7 / span 6;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cv2 .contact dd {
+    font-size: 9.5pt;
+  }
+  .cv2 section {
+    margin-top: 28px;
+  }
+  .cv2 .profile p {
+    font-size: 13pt;
+  }
+  .cv2 .role {
+    padding-block: 14px 16px;
+  }
+  /* Only children of the grid items: a break-inside: avoid on a grid item
+     makes Chrome treat the whole role row as unbreakable, which pushed every
+     role onto a fresh sheet. */
+  .cv2 .company,
+  .cv2 .role-body h3,
+  .cv2 .loc,
+  .cv2 .summary {
+    break-after: avoid;
+  }
+  .cv2 .summary,
+  .cv2 .hl > li {
+    orphans: 3;
+    widows: 3;
+  }
+  .cv2 .yr {
+    font-size: 22pt;
+  }
+  .cv2 .role-body {
+    grid-column: 3 / span 5;
+  }
+  .cv2 .role-body h3 {
+    font-size: 13pt;
+  }
+  .cv2 .role-skills {
+    grid-column: 8 / span 2;
+    margin-top: 0;
+  }
+  .cv2 .role-skills ul {
+    display: grid;
+    font-size: 8.5pt;
+  }
+  .cv2 .role-skills li::after {
+    content: none !important;
+  }
+  .cv2 .summary,
+  .cv2 .hl {
+    margin-top: 8px;
+  }
+  .cv2 .hl {
+    gap: 3px;
+  }
+  /* On paper, Experience and Skills take the full width with their label as
+     a header row, as on a phone. The label column alone cost about two pages. */
+  .cv2 .experience .sec-head,
+  .cv2 .experience .sec-body,
+  .cv2 .skills .sec-head,
+  .cv2 .skills .sec-body {
+    grid-column: 1 / -1;
+  }
+  .cv2 .experience .sec-head,
+  .cv2 .skills .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding-bottom: 4px;
+  }
+  .cv2 .experience .sec-head {
+    border-top-color: var(--c2-signal);
+  }
+  .cv2 .experience .sec-head p,
+  .cv2 .skills .sec-head p {
+    margin-top: 0;
+  }
+  .cv2 .experience .sec-body,
+  .cv2 .skills .sec-body {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .cv2 .skills .sec-body {
+    row-gap: 14px;
+  }
+  .cv2 .skills {
+    break-inside: avoid;
+  }
+  .cv2 .tier ul {
+    font-size: 9.5pt;
+  }
+  .cv2 .tier.t-b ul {
+    columns: 3;
+  }
+  .cv2 .edu,
+  .cv2 .colophon {
+    break-inside: avoid;
+  }
+  .cv2 .colophon {
+    margin-top: 32px;
+  }
+  .cv2 a {
+    border-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv2 * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
