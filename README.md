@@ -9,8 +9,12 @@ The redesigned CV lives next to the original at `/v2`
 `cvData.ts`, the layout in `CvV2.tsx`, and all styles, including its print
 rules, in `cv-v2.css`. The portrait is `public/jonas.webp`.
 
-Export it the same way:
-`node ./server/pdf-export.mjs http://localhost:5173/v2 cv-v2.pdf`
+Export it the same way, in light or dark:
+`node ./server/pdf-export.mjs "http://localhost:5173/v2?theme=light" cv-v2-light.pdf`
+`node ./server/pdf-export.mjs "http://localhost:5173/v2?theme=dark" cv-v2-dark.pdf`
+
+`?theme=` pins the colour scheme on screen too. Without it the screen follows
+the OS setting and the PDF is light.
 
 The output is paginated A4. Page size, margins, print font size and the
 page-break rules live in the `@media print` block of `src/index.css`; the

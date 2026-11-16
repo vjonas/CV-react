@@ -589,15 +589,23 @@ body:has(.cv2) {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  :root:has(.cv2),
-  :root:has(.cv2)[data-theme] {
+  /* Paper is light unless the page was opened with ?theme=dark, which sets
+     data-theme="dark" and keeps the dark tokens for the dark PDF. */
+  :root:has(.cv2):not([data-theme='dark']) {
     --c2-paper: #ffffff;
     --c2-ink: #111214;
     --c2-ink-2: #5a5d63;
     --c2-hair: #d6d7da;
     --c2-signal: #e2401b;
-    --c2-gap: 14px;
     color-scheme: light;
+  }
+  :root:has(.cv2) {
+    --c2-gap: 14px;
+  }
+  /* The sheet margins come from @page, so they need the paper colour too or
+     a dark PDF gets white bands at the top and bottom of each sheet. */
+  @page {
+    background: var(--c2-paper, #fff);
   }
   .cv2 .page {
     max-width: none;
