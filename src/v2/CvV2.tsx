@@ -1,7 +1,20 @@
-import { education, experience, person, skills, type Highlight, type Role } from './cvData';
+import { education, experience, facts, languages, person, skills, type Highlight, type Role } from './cvData';
 import './cv-v2.css';
 
 const year = (ym: string | null) => (ym ? ym.slice(0, 4) : 'Now');
+
+/** ['A1', 'A3', 'A4', 'A5'] → 'A1, A3–A5' */
+function formatRefs(refs: string[]) {
+  const nums = refs.map((r) => Number(r.slice(1))).sort((a, b) => a - b);
+  const runs: string[] = [];
+  for (let i = 0; i < nums.length; i++) {
+    let j = i;
+    while (j + 1 < nums.length && nums[j + 1] === nums[j] + 1) j++;
+    runs.push(j - i >= 2 ? `A${nums[i]}–A${nums[j]}` : nums.slice(i, j + 1).map((n) => `A${n}`).join(', '));
+    i = j;
+  }
+  return runs.join(', ');
+}
 
 function HighlightItem({ item }: { item: Highlight }) {
   if (typeof item === 'string') return <li>{item}</li>;
@@ -19,14 +32,29 @@ function HighlightItem({ item }: { item: Highlight }) {
   );
 }
 
+function HighlightList({ label, items, className }: { label: string; items: Highlight[]; className?: string }) {
+  if (items.length === 0) return null;
+  return (
+    <>
+      <p className="micro hl-label">{label}</p>
+      <ul className={className ? `hl ${className}` : 'hl'}>
+        {items.map((h, i) => (
+          <HighlightItem key={i} item={h} />
+        ))}
+      </ul>
+    </>
+  );
+}
+
 function RoleEntry({ role }: { role: Role }) {
   const current = role.end === null;
   const startYear = year(role.start);
   const endYear = year(role.end);
 
   return (
-    <article className={`role${current ? ' is-current' : ''}`}>
+    <article id={role.id} className={`role${current ? ' is-current' : ''}`}>
       <div className="role-date">
+        <span className="ref micro">{role.id}</span>
         <span className="yr">{startYear}</span>
         {startYear !== endYear && <span className="to">–{endYear}</span>}
         <span className="period">{role.period}</span>
@@ -45,21 +73,14 @@ function RoleEntry({ role }: { role: Role }) {
         </p>
         <h3>{role.role}</h3>
         {role.location && <p className="loc">{role.location}</p>}
+        {role.note && <p className="role-note">{role.note}</p>}
         {role.intro.map((p, i) => (
           <p key={i} className="summary">
             {p}
           </p>
         ))}
-        {role.highlights.length > 0 && (
-          <>
-            {role.highlightsLabel && <p className="micro hl-label">{role.highlightsLabel}</p>}
-            <ul className="hl">
-              {role.highlights.map((h, i) => (
-                <HighlightItem key={i} item={h} />
-              ))}
-            </ul>
-          </>
-        )}
+        <HighlightList label="Responsibilities" items={role.responsibilities} />
+        <HighlightList label="Results" items={role.results} className="hl-results" />
       </div>
 
       <div className="role-skills">
@@ -123,7 +144,9 @@ export default function CvV2() {
               </div>
               <div>
                 <dt className="micro">Education</dt>
-                <dd>{education[0].degree}</dd>
+                <dd>
+                  Prof. Bachelor Applied Informatics, {education[0].year}
+                </dd>
               </div>
             </dl>
           </div>
@@ -135,13 +158,21 @@ export default function CvV2() {
           </div>
           <div className="sec-body">
             <p>{person.profile}</p>
+            <dl className="facts">
+              {facts.map((f) => (
+                <div key={f.label}>
+                  <dt className="micro">{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </section>
 
         <section className="grid experience" aria-labelledby="h-exp">
           <div className="sec-head">
             <h2 id="h-exp">Experience</h2>
-            <p className="micro">{experience.length} roles · 2017–now</p>
+            <p className="micro">A1–A{experience.length} · 2017–now</p>
           </div>
           <div className="sec-body">
             {experience.map((r) => (
@@ -153,7 +184,7 @@ export default function CvV2() {
         <section className="grid skills" aria-labelledby="h-skills">
           <div className="sec-head">
             <h2 id="h-skills">Skills</h2>
-            <p className="micro">By depth of use</p>
+            <p className="micro">By depth of use · where used</p>
           </div>
           <div className="sec-body">
             <p className="legend">
@@ -176,7 +207,9 @@ export default function CvV2() {
                 </p>
                 <ul>
                   {skills[t.key].map((s) => (
-                    <li key={s}>{s}</li>
+                    <li key={s.name}>
+                      {s.name} <span className="refs">{formatRefs(s.refs)}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -191,19 +224,37 @@ export default function CvV2() {
           <div className="sec-body">
             {education.map((e) => (
               <div key={e.degree} className="edu-row">
-                <h3>{e.degree}</h3>
-                <p>{e.school}</p>
+                <h3>
+                  {e.english}
+                  <small>{e.degree}</small>
+                </h3>
+                <p>
+                  {e.school}
+                  <br />
+                  Graduated {e.year}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
-        <footer className="grid colophon">
-          <p className="micro">
-            {person.name} · {person.email}
-          </p>
-          <p className="micro">Set in Archivo on a 12-column grid</p>
-        </footer>
+        <section className="grid edu langs" aria-labelledby="h-lang">
+          <div className="sec-head">
+            <h2 id="h-lang">Languages</h2>
+            <p className="micro">CEFR levels</p>
+          </div>
+          <div className="sec-body">
+            {languages.map((l) => (
+              <div key={l.name} className="edu-row">
+                <h3>
+                  {l.name} <span className="lvl">{l.level}</span>
+                </h3>
+                {l.note && <p>{l.note}</p>}
+              </div>
+            ))}
+          </div>
+        </section>
+
       </div>
     </div>
   );

@@ -222,6 +222,27 @@ body:has(.cv2) {
   font-weight: 400;
 }
 
+/* Key facts under the profile: what an evaluator checks first. */
+.cv2 .facts {
+  margin-top: 32px;
+  display: grid;
+  border-top: 1px solid var(--c2-hair);
+}
+.cv2 .facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 6fr);
+  column-gap: var(--c2-gap);
+  padding-block: 9px;
+  border-bottom: 1px solid var(--c2-hair);
+}
+.cv2 .facts dt {
+  padding-top: 2px;
+}
+.cv2 .facts dd {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
 /* The one rule in signal colour */
 .cv2 .experience .sec-body {
   border-top: 4px solid var(--c2-signal);
@@ -246,6 +267,10 @@ body:has(.cv2) {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+.cv2 .ref {
+  color: var(--c2-ink);
+  margin-bottom: 4px;
 }
 .cv2 .yr {
   font-size: 40px;
@@ -310,6 +335,14 @@ body:has(.cv2) {
   font-size: 13px;
   color: var(--c2-ink-2);
 }
+.cv2 .role-note {
+  margin-top: 10px;
+  padding-left: 10px;
+  border-left: 2px solid var(--c2-signal);
+  font-size: 13px;
+  color: var(--c2-ink-2);
+  max-width: 62ch;
+}
 .cv2 .summary {
   margin-top: 16px;
   max-width: 62ch;
@@ -337,6 +370,12 @@ body:has(.cv2) {
 .cv2 .hl > li::before {
   content: '—';
   color: var(--c2-ink-2);
+}
+/* Results get an arrow in the signal colour so they read apart from the
+   responsibilities above them. */
+.cv2 .hl-results > li::before {
+  content: '→';
+  color: var(--c2-signal);
 }
 .cv2 .hl .sub {
   margin-top: 6px;
@@ -435,8 +474,17 @@ body:has(.cv2) {
 .cv2 .tier.t-c ul {
   color: var(--c2-ink-2);
 }
+/* Where each skill was used, as role references (A1–A7). */
+.cv2 .tier .refs {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--c2-ink-2);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
 
-/* ---------- Education + colophon ---------- */
+/* ---------- Education + languages ---------- */
 .cv2 .edu-row {
   display: grid;
   grid-template-columns: repeat(9, minmax(0, 1fr));
@@ -454,19 +502,25 @@ body:has(.cv2) {
   color: var(--c2-ink-2);
   padding-top: 4px;
 }
+.cv2 .edu-row + .edu-row {
+  margin-top: 14px;
+}
+.cv2 .edu-row h3 small {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--c2-ink-2);
+}
+.cv2 .lvl {
+  margin-left: 8px;
+  color: var(--c2-signal);
+}
+.cv2 .langs {
+  margin-top: 48px;
+}
 
-.cv2 .colophon {
-  margin-top: 96px;
-  padding-top: 14px;
-  border-top: 1px solid var(--c2-ink);
-  row-gap: 8px;
-}
-.cv2 .colophon > * {
-  grid-column: span 6;
-}
-.cv2 .colophon > :last-child {
-  text-align: right;
-}
 
 /* ---------- Responsive ---------- */
 @media screen and (max-width: 1000px) {
@@ -559,12 +613,6 @@ body:has(.cv2) {
   .cv2 .edu-row p {
     grid-column: 1 / -1;
   }
-  .cv2 .colophon > * {
-    grid-column: 1 / -1;
-  }
-  .cv2 .colophon > :last-child {
-    text-align: left;
-  }
 }
 @media screen and (max-width: 520px) {
   .cv2 .contact {
@@ -647,7 +695,8 @@ body:has(.cv2) {
   .cv2 .company,
   .cv2 .role-body h3,
   .cv2 .loc,
-  .cv2 .summary {
+  .cv2 .summary,
+  .cv2 .hl-label {
     break-after: avoid;
   }
   .cv2 .summary,
@@ -700,6 +749,12 @@ body:has(.cv2) {
   .cv2 .experience .sec-head {
     border-top-color: var(--c2-signal);
   }
+  /* Sheet 1 is the summary: masthead, profile and key facts. Experience
+     starts on sheet 2, which also keeps its label with the first role
+     (Chrome ignores break-after between grid rows). */
+  .cv2 .experience {
+    break-before: page;
+  }
   .cv2 .experience .sec-head p,
   .cv2 .skills .sec-head p {
     margin-top: 0;
@@ -722,11 +777,31 @@ body:has(.cv2) {
     columns: 3;
   }
   .cv2 .edu,
-  .cv2 .colophon {
+  .cv2 .facts > div {
     break-inside: avoid;
   }
-  .cv2 .colophon {
-    margin-top: 32px;
+  /* Block, not grid: break-inside: avoid on the rows of a grid made Chrome
+     keep the whole profile together and push it off the first sheet. */
+  .cv2 .facts {
+    margin-top: 16px;
+    display: block;
+  }
+  .cv2 .facts > div {
+    padding-block: 5px;
+  }
+  /* Chrome moves a whole grid row to the next sheet when it fits there, which
+     left the first sheet half empty. As a block, the profile flows on. */
+  .cv2 .profile {
+    display: block;
+  }
+  .cv2 .profile .sec-head {
+    padding-bottom: 8px;
+  }
+  .cv2 .facts dd {
+    font-size: 9.5pt;
+  }
+  .cv2 .langs {
+    margin-top: 20px;
   }
   .cv2 a {
     border-bottom: 0;
@@ -737,5 +812,12 @@ body:has(.cv2) {
   .cv2 * {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .cv2 .facts > div {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 2px;
   }
 }
